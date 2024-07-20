@@ -88,7 +88,7 @@
                 const parser = new DOMParser();
                 resp.data.tlist.forEach(async(post, idx)=>{
                     $.ajax({
-                        url: proxyUrl(`https://disp.cc/b/${posts.board}/${post.ti}`),
+                        url: proxyUrl(`https://disp.cc/m/${posts.board}/${post.ti}`),
                         type: 'get',
                         dataType: 'html',
                         // async: false,
