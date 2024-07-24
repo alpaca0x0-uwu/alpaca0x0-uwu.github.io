@@ -1,0 +1,296 @@
+<!doctype html><html lang=zh class=is-dark><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=content-language content="zh-tw"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta property="og:type" content="website"><meta property="og:url" content="https://uwu.alpaca.tw/app/poker/"><meta name=referrer content="no-referrer"><title>撲克桌遊 | AlpacaUwU 羊駝屋</title>
+<meta name=title content="撲克桌遊 | AlpacaUwU 羊駝屋"><meta property="og:title" content="撲克桌遊 | AlpacaUwU 羊駝屋"><meta name=subject content="簡單撲克桌遊，自由發揮！"><meta name=description content="簡單撲克桌遊，自由發揮！"><meta property="og:description" content="簡單撲克桌遊，自由發揮！"><meta property="og:image" content="/app/poker/feature.png"><link rel=apple-touch-icon sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel=android-chrome type=image/png sizes=192x192 href=../../android-chrome-192x192.png><link rel=android-chrome type=image/png sizes=512x512 href=../../android-chrome-512x512.png><link rel=apple-touch-icon type=image/png sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel="shortcut icon" href=../../favicon.ico type=image/x-icon><link rel=icon href=../../favicon.ico type=image/x-icon><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel=stylesheet><script async src="https://www.googletagmanager.com/gtag/js?id=G-B7KMWZNLKP"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-B7KMWZNLKP")</script><link rel=stylesheet href=css/cards.css><link rel=stylesheet href=css/animate.min.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417118187182876" crossorigin=anonymous></script><link rel=stylesheet href=../../framework/tocas/tocas.min.css><script src=../../framework/tocas/tocas.min.js></script><link rel=stylesheet href=../../css/vue.css><script src=../../js/sweetalert2.js></script></head><body><header><div class="ts-box is-sharp is-raised" style=position:fixed;width:100%;z-index:999999><div class="ts-content is-secondary"><div class="ts-breadcrumb is-chevroned"><a class=item href=../>Apps</a>
+<a class=item href=#!>撲克桌遊</a></div></div></div><div style=height:47px></div></header><main><div id=App><br><div class=ts-container style=height:80vh v-cloak><div class=ts-wrap v-if=deck.id><button class="ts-button is-short" @click=window.location.replace(window.location.pathname)>返回</button>
+<button class="ts-button is-short" @click=deck.copyLink()>複製連結</button>
+<template v-if="deck.player.is.inRoom && !deck.is.error"><button class="ts-button is-short" @click=deck.reset()>重設房間</button>
+<button class="ts-button is-short" @click=deck.start() :disabled="deck.players.length<2">開始遊戲</button>
+<button class="ts-button is-short" @click="deck.drawCards(Math.floor(52/deck.players.length) - deck.player.cards.length)" v-cloak :disabled="!deck.is.starting || deck.remaining < 1">平均抽牌(抽滿 {{Math.floor(52/deck.players.length)}} 張)</button>
+<label class="ts-chip is-input"><input type=checkbox v-model=deck.player.autoJoin><div class=content>自動加入</div></label></template><template v-if="!deck.player.is.inRoom && !deck.is.full && !deck.is.error"><div class=column><button class=ts-button @click=deck.join()>加入</button></div><div class=column><button class=ts-button @click=deck.joinAuditorium() v-show=!deck.player.is.audience>觀戰</button></div></template></div><br><div class=ts-wrap><div class="ts-chip is-large"><span class="ts-icon is-users-icon"></span>
+玩家 {{ deck.players.length }} 人</div><div class="ts-chip is-large"><span class="ts-icon is-users-icon"></span>
+觀眾 {{ deck.audience.length }} 人</div></div><div class="ts-grid is-3-columns" v-if=debug><div class=column><span>【狀況】{{ deck.is.starting ? '開始' : '等待' }}<br>【玩家編號 / ID】{{ deck.player.number }} / {{ deck.player.id }}<br>【是否在遊戲房裡】{{ deck.player.is.inRoom }}<br>【是否為觀眾】{{ deck.player.is.audience }}<br></span></div><div class=column>【玩家們】{{ deck.players.map(p=>p.id) }}<br>【觀眾們】{{ deck.audience }}<br></div><div class=column>【卡池數量】{{ deck.remaining }}<br>桌上卡片數量：{{ deck.table.remaining }}<br><template v-for="player in deck.players">玩家 {{ player.id }} 卡片數量：{{ player.remaining }}<br></template></div></div><br><div v-if=deck.is.loading>正在載入牌桌中...</div><div v-else-if=deck.is.error>出錯</div><div v-else-if=!deck.id class=ts-app-center><div class=content><div class=ts-box><div class="ts-content is-padded ts-app-center"><button class=ts-button @click="deck.create().always(()=>{
+                            window.location.replace('?deck_id=' + deck.id);
+                        })">創建新遊戲</button><div class="ts-divider is-center-text is-section">或者</div><div class="ts-input is-end-labeled"><input type=text v-model=input.deck_id>
+<button class="ts-button label" @click="window.location.replace('?deck_id='+input.deck_id)">進入遊戲房</button></div></div></div></div></div><div v-else-if="deck.is.available && (deck.player.is.inRoom || deck.player.is.audience)"><div class=ts-container><div class="ts-grid table"><div class="column is-14-wide"><div class=ts-grid style=padding-left:80px><div v-for="card in deck.table.cards" class="card column animate__animated" :class="{'animate__fadeOutDown':card.pickup}" @click="(card.pickup = deck.player.is.inRoom ? true : false); deck.pickupCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div><div class="deck column is-2-wide"><div v-for="i in deck.remaining" class="back-card animate__animated" @click=deck.drawCards(1) v-cloak><img :src="api.getImg('back')" height=160px></div></div></div></div><div class=ts-container><div class="hand animate__animated animate__slideInLeft"><div v-for="card in deck.player.cards" class="card animate__animated" :class="{'animate__fadeOutUp':card.hidden}" @click="(card.hidden = deck.player.is.inRoom ? true : false); deck.throwCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div></div></div></div><script type=module>
+    import '/js/ajax.esm.js';
+    import { createApp, reactive, onMounted, computed, nextTick, watch } from '/framework/vue.esm.js';
+    // 
+    const App = createApp({setup(){
+        const params = new URLSearchParams(window.location.search);
+        const debug = false;
+        // 
+        let cookie = {
+            set: (name, value, minutes=60)=>{
+                let date = new Date();
+                date.setTime(date.getTime() + (minutes * 60 * 1000));
+                document.cookie = `${name}=${value};expires=${date.toUTCString()};path=${window.location.pathname};domain=${document.domain};`;
+                return cookie.get(name);
+            },
+            get: (cName)=>{
+                const name = cName + "=";
+                const cDecoded = decodeURIComponent(document.cookie); //to be careful
+                const cArr = cDecoded .split('; ');
+                let res;
+                cArr.forEach(val => {
+                    if (val.indexOf(name) === 0) res = val.substring(name.length);
+                })
+                return res;
+            },
+            del: (name)=>{ cookie.set(name, '', -1); },
+        };
+        // 
+        let genToken = (length=12)=>{
+            let result = '';
+            const characters = 'ABCDEFGHJKLMNOPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz023456789';
+            let counter = 0;
+            while (counter < length) {
+                result += characters.charAt(Math.floor(Math.random() * characters.length));
+                counter++;
+            }
+            return result;
+        };
+        // 
+        let api = reactive({
+            url: 'https://deckofcardsapi.com',
+            uri: 'api/deck',
+            getImg: (card)=>{ return `${api.url}/static/img/${card}.png`; },
+            request: (url, config={})=>{
+                return $.ajax({
+                    url: `${api.url}/${url.trimStart('/')}`,
+                    type: 'get',
+                    dataType: 'json',
+                    ...config
+                }).fail(()=>{ deck.is.error = true; });
+            }
+        });
+        // 
+        let input = reactive({
+            deck_id: '',
+        });
+        // 
+        let deck = reactive({
+            is: {
+                error: false,
+                loading: true,
+                updating: false,
+                available: false,
+                full: computed(()=>{ return deck.players.length >= deck.player.max; }),
+                starting: computed(()=>{ return Object.keys(deck.piles).includes('table'); }),
+                drawing: false,
+            },
+            id: params.get('deck_id'),
+            shuffled: false,
+            remaining: 0,
+            piles: {},
+            throwingCards: [],
+            table: {
+                is: {
+                    updating: false,
+                },
+                cards: [],
+                remaining: computed(()=>{ return deck.table.cards.length; }),
+                update: (updateNow=true)=>{
+                    cookie.set('playerId', deck.player.id);
+                    cookie.set('autoJoin', deck.player.autoJoin, 60*24*7)
+                    if(deck.table.is.updating || !deck.id){ return $.ajax(); }
+                    deck.table.is.updating = true;
+                    let uri = deck.is.starting ? `pile/table/list/` : `pile/_/add/?cards=`;
+                    return api.request(`${api.uri}/${deck.id}/${uri}`)
+                        .done((resp)=>{ if(updateNow){ deck.render(resp); } })
+                        .always(()=>{ deck.table.is.updating = false; });
+                },
+            },
+            audience: computed(()=>{
+                let _audience = Object.keys(deck.piles).filter(k=>k.startsWith('audience_')).map(a=>a.split('_')[1]).filter(a=>{
+                    let players = deck.players.map(p=>p.id);
+                    return !players.includes(a);
+                });
+                _audience.sort();
+                let index = _audience.findIndex(a=>a==`${deck.player.id}`);
+                let audience = _audience;
+                return audience;
+            }),
+            players: computed(()=>{
+                let _players = Object.keys(deck.piles).filter(k=>k.startsWith('player_'));
+                _players.sort();
+                let players = [];
+                _players.length = 6;
+                _players.forEach(player => {
+                    player = {
+                        id: player.split('_')[1],
+                        remaining: deck.piles[player].remaining,
+                    };
+                    players.push(player);
+                });
+                // for(let i=0; i < deck.player.max; i++) {
+                //     let index = (_players.findIndex((p)=>p.startsWith(`player_`)));
+                //     if(index != -1){
+                //         let player = _players[index];
+                //         player = {
+                //             id: player.split('_')[2],
+                //             remaining: deck.piles[player].remaining,
+                //         };
+                //         players.push(player);
+                //     }
+                // }
+                return players;
+            }),
+            player: {
+                pileName: computed(()=>{ return `player_${deck.player.id}`; }),
+                id: cookie.get('playerId') ? cookie.get('playerId') : cookie.set('playerId', genToken()),
+                number: computed(()=>{ return deck.players.findIndex(p=>p.id===`${deck.player.id}`); }),
+                is: {
+                    inRoom: computed(()=>{ return deck.players.map(p=>p.id).includes(`${deck.player.id}`); }),
+                    updating: false,
+                    audience: computed(()=>{ return !deck.player.is.inRoom && deck.audience.includes(deck.player.id); })
+                },
+                autoJoin: cookie.get('autoJoin') ? cookie.get('autoJoin') : cookie.set('autoJoin', 0),
+                max: 6,
+                cards: [],
+                update: (updateNow=true)=>{
+                    if(deck.player.is.updating || !deck.id){ return $.ajax(); }
+                    deck.player.is.updating = true;
+                    let uri = deck.player.is.inRoom ? `pile/${deck.player.pileName}/list/` : `pile/_/add/?cards=`;
+                    return api.request(`${api.uri}/${deck.id}/${uri}`)
+                        .done((resp)=>{ if(updateNow){ deck.render(resp); } })
+                        .always(()=>{ deck.player.is.updating = false; });
+                },
+                remaining: computed(()=>deck.player.cards.length),
+            },
+            copyLink: ()=>{
+                navigator.clipboard.writeText(window.location.href);
+                Swal.fire({
+                    position: 'bottom-start',
+                    icon: 'success',
+                    title: '複製成功',
+                    toast: true,
+                    showConfirmButton: false,
+                    timer: 2000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                });
+            },
+            render: async (resp=null)=>{
+                deck.id = resp?.deck_id ? resp.deck_id : deck.id;
+                deck.remaining = resp?.remaining !== undefined ? resp.remaining : deck.remaining;
+                deck.shuffled = resp?.shuffled ? resp.shuffled : deck.shuffled;
+                deck.piles = resp.piles ? resp.piles : deck.piles;
+                deck.player.cards = (deck.piles?.[deck.player.pileName]?.cards) ? (deck.piles[deck.player.pileName].cards) : (deck.player.cards);
+                deck.player.cards.sort((a, b)=>{
+                    a = a.code.split('');
+                    b = b.code.split('');
+                    let table = {
+                        'A': 1, '2': 2, '3': 3, '4': 4, '5': 5, '6': 6, '7': 7, '8': 8, '9': 9, '0': 10, 'J': 11, 'Q': 12, 'K': 13,
+                        'S': 4, 'H': 3, 'D': 2, 'C': 1,
+                    }
+                    a = table[a[0]]*10 + table[a[1]];
+                    b = table[b[0]]*10 + table[b[1]];
+                    return a - b;
+                });
+                deck.table.cards = (deck.piles?.['table']?.cards !== undefined) ? (deck.piles['table'].cards) : (deck.table.cards);
+                await nextTick();
+            },
+            create: (deck_count=1)=>{
+                return api.request(`${api.uri}/new/shuffle/?deck_count=${deck_count}`).done((resp)=>{ deck.render(resp); });
+            },
+            reset: ()=>{
+                if(!deck.player.is.inRoom){ return $.ajax(); }
+                return api.request(`${api.uri}/${deck.id}/shuffle/`).done((resp)=>{
+                    deck.render(resp);
+                });
+            },
+            join: ()=>{
+                let index = deck.players.findIndex((p)=>p.id===`${deck.player.id}`);
+                if(index==-1){ 
+                    if(deck.is.full){ return false; }
+                    index = deck.players.length;
+                }
+                return api.request(`${api.uri}/${deck.id}/pile/${deck.player.pileName}/add/?cards=`)
+                    .done((resp)=>{ deck.render(resp); });
+            },
+            joinAuditorium: ()=>{
+                return api.request(`${api.uri}/${deck.id}/pile/audience_${deck.player.id}/add/?cards=`)
+                    .done((resp)=>{ deck.render(resp); });
+            },
+            start: ()=>{
+                if(deck.players.length < 2 || !deck.player.is.inRoom){ return $.ajax(); }
+                return api.request(`${api.uri}/${deck.id}/pile/table/add/?cards=`)
+                    .done((resp)=>{ deck.render(resp); });
+            },
+            drawCards: (count=1)=>{
+                if(!deck.player.is.inRoom || !deck.is.starting || deck.is.drawing || count < 1 || deck.remaining < 1){ return $.ajax(); }
+                deck.is.drawing = true;
+                return api.request(`${api.uri}/${deck.id}/draw/?count=${count}`).always((resp)=>{
+                    let cardCodes = resp.cards.map(c=>c.code);
+                    api.request(`${api.uri}/${deck.id}/pile/${deck.player.pileName}/add/?cards=${cardCodes.join(',')}`).done(()=>{
+                        deck.player.update();
+                    }).always(()=>{ deck.is.drawing = false; });
+                });
+            },
+            throwCards: (cards)=>{
+                cards = cards.split(',');
+                if(!deck.player.is.inRoom || !deck.is.starting || deck.player.remaining < 1 || cards.length < 1){ return $.ajax(); }
+                setTimeout(() => {
+                    cards.forEach(card=>{
+                        let index = deck.player.cards.map(c=>c.code).indexOf(card);
+                        if(index !== -1){ deck.player.cards.splice(index, 1); }
+                    });
+                }, 500);
+                return api.request(`${api.uri}/${deck.id}/pile/table/add/?cards=${cards}`).done((resp)=>{
+                    deck.player.update();
+                    deck.table.update();
+                });
+            },
+            pickupCards: (cards)=>{
+                cards = cards.split(',');
+                if(!deck.player.is.inRoom || !deck.is.starting || deck.table.remaining < 1 || cards.length < 1){ return; }
+                setTimeout(() => {
+                    cards.forEach(card=>{
+                        let index = deck.table.cards.map(c=>c.code).indexOf(card);
+                        if(index !== -1){ deck.table.cards.splice(index, 1); }
+                    });
+                }, 500);
+                return api.request(`${api.uri}/${deck.id}/pile/${deck.player.pileName}/add/?cards=${cards}`).done(()=>{
+                    deck.player.update();
+                });
+            },
+        });
+        // 
+        watch(()=>deck.table.remaining, ()=>{
+            let tableCards = deck.table.cards.map(tableCard=>tableCard.code);
+            deck.throwingCards = deck.throwingCards.filter(c=>!tableCards.includes(c.code));
+        });
+        watch(()=>deck.is.starting, ()=>{
+            if(!deck.is.starting){
+                deck.table.cards = [];
+                deck.player.cards = [];
+            }
+        });
+        watch(()=>deck.player.is.inRoom, async()=>{
+            while(!deck.player.is.inRoom && deck.player.autoJoin && !deck.is.full){
+                await new Promise(r => setTimeout(r, 1000));
+                deck.join();
+            }
+        });
+        // 
+        onMounted(()=>{
+            deck.player.update().always(()=>{ deck.player.update(); });
+            deck.table.update().always(()=>{
+                deck.table.update();
+                deck.is.loading = false;
+                deck.is.available = true;
+            });
+            // 
+            setInterval(() => {
+                if(deck.is.error){ return; }
+                deck.table.update(false).done((resp)=>{
+                    if(!deck.table.is.updating){ deck.render(resp); }
+                });
+            }, 1000);
+        });
+        // 
+        return { deck, window, document, input, api, debug, params };
+    }}).mount('#App');
+</script></main><footer><script></script></footer></body></html>

@@ -1,0 +1,137 @@
+.table {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border: 1px solid #ccc;
+    background-color: green;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 0;
+}
+
+.table .card {
+    width: 100px;
+    height: 150px;
+    background: white;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-size: cover;
+    transform: rotate(var(--rotation)) translate(var(--translateX), var(--translateY));
+    margin-left: -80px;
+    transition: transform 0.1s ease, opacity 0.3s ease;
+    z-index: 1;
+}
+
+.table .card:hover {
+    z-index: 2;
+}
+
+.deck {
+    position: absolute;
+    width: 120px; /* 根据卡片宽度调整 */
+    height: 170px; /* 根据卡片高度调整 */
+    right: 50px;
+    z-index: 0;
+    bottom: 10px
+}
+
+.deck .back-card {
+    position: absolute;
+    width: 100px;
+    height: 150px;
+    background: white;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-size: cover;
+    transform: rotate(var(--rotation)) translate(var(--translateX), var(--translateY));
+    z-index: 1;
+}
+
+.deck .back-card:nth-child(1) { --rotation: 10deg; --translateX: 30px; --translateY: 20px; }
+.deck .back-card:nth-child(2) { --rotation: -15deg; --translateX: -20px; --translateY: 10px; }
+.deck .back-card:nth-child(3) { --rotation: 20deg; --translateX: 40px; --translateY: -30px; }
+.deck .back-card:nth-child(4) { --rotation: -25deg; --translateX: -30px; --translateY: 25px; }
+.deck .back-card:nth-child(5) { --rotation: 5deg; --translateX: 15px; --translateY: -40px; }
+.deck .back-card:nth-child(6) { --rotation: -10deg; --translateX: 20px; --translateY: 35px; }
+.deck .back-card:nth-child(7) { --rotation: 15deg; --translateX: -25px; --translateY: -15px; }
+.deck .back-card:nth-child(8) { --rotation: -20deg; --translateX: 30px; --translateY: 20px; }
+.deck .back-card:nth-child(9) { --rotation: 10deg; --translateX: -15px; --translateY: 30px; }
+.deck .back-card:nth-child(10) { --rotation: -5deg; --translateX: 20px; --translateY: -25px; }
+.deck .back-card:nth-child(11) { --rotation: 25deg; --translateX: -10px; --translateY: 10px; }
+.deck .back-card:nth-child(12) { --rotation: -30deg; --translateX: 40px; --translateY: 5px; }
+.deck .back-card:nth-child(13) { --rotation: 10deg; --translateX: -20px; --translateY: -20px; }
+.deck .back-card:nth-child(14) { --rotation: -15deg; --translateX: 30px; --translateY: 25px; }
+.deck .back-card:nth-child(15) { --rotation: 5deg; --translateX: -35px; --translateY: -10px; }
+.deck .back-card:nth-child(16) { --rotation: -20deg; --translateX: 40px; --translateY: 15px; }
+.deck .back-card:nth-child(17) { --rotation: 15deg; --translateX: -25px; --translateY: 30px; }
+.deck .back-card:nth-child(18) { --rotation: -10deg; --translateX: 20px; --translateY: -35px; }
+.deck .back-card:nth-child(19) { --rotation: 25deg; --translateX: -15px; --translateY: 10px; }
+.deck .back-card:nth-child(20) { --rotation: -5deg; --translateX: 30px; --translateY: 25px; }
+.deck .back-card:nth-child(21) { --rotation: 10deg; --translateX: -30px; --translateY: -20px; }
+.deck .back-card:nth-child(22) { --rotation: -15deg; --translateX: 20px; --translateY: 30px; }
+.deck .back-card:nth-child(23) { --rotation: 20deg; --translateX: -25px; --translateY: -10px; }
+.deck .back-card:nth-child(24) { --rotation: -25deg; --translateX: 35px; --translateY: 15px; }
+.deck .back-card:nth-child(25) { --rotation: 5deg; --translateX: -20px; --translateY: 20px; }
+.deck .back-card:nth-child(26) { --rotation: -10deg; --translateX: 25px; --translateY: -30px; }
+.deck .back-card:nth-child(27) { --rotation: 15deg; --translateX: -30px; --translateY: 25px; }
+.deck .back-card:nth-child(28) { --rotation: -20deg; --translateX: 35px; --translateY: -15px; }
+.deck .back-card:nth-child(29) { --rotation: 10deg; --translateX: -25px; --translateY: 30px; }
+.deck .back-card:nth-child(30) { --rotation: -5deg; --translateX: 20px; --translateY: -20px; }
+.deck .back-card:nth-child(31) { --rotation: 25deg; --translateX: -15px; --translateY: 25px; }
+.deck .back-card:nth-child(32) { --rotation: -30deg; --translateX: 30px; --translateY: -10px; }
+.deck .back-card:nth-child(33) { --rotation: 10deg; --translateX: -20px; --translateY: 30px; }
+.deck .back-card:nth-child(34) { --rotation: -15deg; --translateX: 25px; --translateY: -15px; }
+.deck .back-card:nth-child(35) { --rotation: 20deg; --translateX: -30px; --translateY: 25px; }
+.deck .back-card:nth-child(36) { --rotation: -25deg; --translateX: 35px; --translateY: -20px; }
+.deck .back-card:nth-child(37) { --rotation: 5deg; --translateX: -25px; --translateY: 15px; }
+.deck .back-card:nth-child(38) { --rotation: -10deg; --translateX: 30px; --translateY: -25px; }
+.deck .back-card:nth-child(39) { --rotation: 15deg; --translateX: -30px; --translateY: 20px; }
+.deck .back-card:nth-child(40) { --rotation: -20deg; --translateX: 25px; --translateY: -10px; }
+.deck .back-card:nth-child(41) { --rotation: 10deg; --translateX: -20px; --translateY: 15px; }
+.deck .back-card:nth-child(42) { --rotation: -5deg; --translateX: 30px; --translateY: 25px; }
+.deck .back-card:nth-child(43) { --rotation: 25deg; --translateX: -25px; --translateY: -15px; }
+.deck .back-card:nth-child(44) { --rotation: -10deg; --translateX: 35px; --translateY: 20px; }
+.deck .back-card:nth-child(45) { --rotation: 15deg; --translateX: -30px; --translateY: 30px; }
+.deck .back-card:nth-child(46) { --rotation: -20deg; --translateX: 25px; --translateY: -25px; }
+.deck .back-card:nth-child(47) { --rotation: 10deg; --translateX: -20px; --translateY: 20px; }
+.deck .back-card:nth-child(48) { --rotation: -15deg; --translateX: 30px; --translateY: -30px; }
+.deck .back-card:nth-child(49) { --rotation: 20deg; --translateX: -25px; --translateY: 25px; }
+.deck .back-card:nth-child(50) { --rotation: -5deg; --translateX: 35px; --translateY: -20px; }
+.deck .back-card:nth-child(51) { --rotation: 25deg; --translateX: -30px; --translateY: 15px; }
+.deck .back-card:nth-child(52) { --rotation: -10deg; --translateX: 20px; --translateY: -25px; }
+.deck .back-card:nth-child(53) { --rotation: 10deg; --translateX: -15px; --translateY: 30px; }
+.deck .back-card:nth-child(54) { --rotation: -10deg; --translateX: 25px; --translateY: -30px; }
+
+.hand {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 250px; /* Adjust as needed */
+    overflow-x: auto;
+    overflow-y: visible;
+    z-index: 0;
+}
+
+.hand .card {
+    width: 100px;
+    height: 150px;
+    background: white;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-size: cover;
+    transform: rotate(var(--rotation)) translate(var(--translateX), var(--translateY));
+    margin-left: -60px;
+    transition: transform 0.1s ease, opacity 0.3s ease;
+    z-index: 1;
+}
+
+.hand .card:hover {
+    transform: translateY(-20px);
+}
+
+.hand .card:first-child {
+    margin-left: 0px;
+}
