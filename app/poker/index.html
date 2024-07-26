@@ -3,14 +3,13 @@
 <a class=item href=#!>撲克桌遊</a></div></div></div><div style=height:47px></div></header><main><div id=App><br><div class=ts-container style=height:80vh v-cloak><div class=ts-wrap v-if=deck.id><button class="ts-button is-short" @click=window.location.replace(window.location.pathname)>返回</button>
 <button class="ts-button is-short" @click=deck.copyLink()>複製連結</button>
 <template v-if="deck.player.is.inRoom && !deck.is.error"><button class="ts-button is-short" @click=deck.reset()>重設房間</button>
-<button class="ts-button is-short" @click=deck.start() :disabled="deck.players.length<2">開始遊戲</button>
+<button class="ts-button is-short" @click=deck.start() :disabled="deck.is.starting || deck.players.length<2">開始遊戲</button>
 <button class="ts-button is-short" @click="deck.drawCards(Math.floor(52/deck.players.length) - deck.player.cards.length)" v-cloak :disabled="!deck.is.starting || deck.remaining < 1">平均抽牌(抽滿 {{Math.floor(52/deck.players.length)}} 張)</button>
 <label class="ts-chip is-input"><input type=checkbox v-model=deck.player.autoJoin><div class=content>自動加入</div></label></template><template v-if="!deck.player.is.inRoom && !deck.is.full && !deck.is.error"><div class=column><button class=ts-button @click=deck.join()>加入</button></div><div class=column><button class=ts-button @click=deck.joinAuditorium() v-show=!deck.player.is.audience>觀戰</button></div></template></div><br><div class=ts-wrap><div class="ts-chip is-large"><span class="ts-icon is-users-icon"></span>
 玩家 {{ deck.players.length }} 人</div><div class="ts-chip is-large"><span class="ts-icon is-users-icon"></span>
-觀眾 {{ deck.audience.length }} 人</div></div><div class="ts-grid is-3-columns" v-if=debug><div class=column><span>【狀況】{{ deck.is.starting ? '開始' : '等待' }}<br>【玩家編號 / ID】{{ deck.player.number }} / {{ deck.player.id }}<br>【是否在遊戲房裡】{{ deck.player.is.inRoom }}<br>【是否為觀眾】{{ deck.player.is.audience }}<br></span></div><div class=column>【玩家們】{{ deck.players.map(p=>p.id) }}<br>【觀眾們】{{ deck.audience }}<br></div><div class=column>【卡池數量】{{ deck.remaining }}<br>桌上卡片數量：{{ deck.table.remaining }}<br><template v-for="player in deck.players">玩家 {{ player.id }} 卡片數量：{{ player.remaining }}<br></template></div></div><br><div v-if=deck.is.loading>正在載入牌桌中...</div><div v-else-if=deck.is.error>出錯</div><div v-else-if=!deck.id class=ts-app-center><div class=content><div class=ts-box><div class="ts-content is-padded ts-app-center"><button class=ts-button @click="deck.create().always(()=>{
-                            window.location.replace('?deck_id=' + deck.id);
-                        })">創建新遊戲</button><div class="ts-divider is-center-text is-section">或者</div><div class="ts-input is-end-labeled"><input type=text v-model=input.deck_id>
-<button class="ts-button label" @click="window.location.replace('?deck_id='+input.deck_id)">進入遊戲房</button></div></div></div></div></div><div v-else-if="deck.is.available && (deck.player.is.inRoom || deck.player.is.audience)"><div class=ts-container><div class="ts-grid table"><div class="column is-14-wide"><div class=ts-grid style=padding-left:80px><div v-for="card in deck.table.cards" class="card column animate__animated" :class="{'animate__fadeOutDown':card.pickup}" @click="(card.pickup = deck.player.is.inRoom ? true : false); deck.pickupCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div><div class="deck column is-2-wide"><div v-for="i in deck.remaining" class="back-card animate__animated" @click=deck.drawCards(1) v-cloak><img :src="api.getImg('back')" height=160px></div></div></div></div><div class=ts-container><div class="hand animate__animated animate__slideInLeft"><div v-for="card in deck.player.cards" class="card animate__animated" :class="{'animate__fadeOutUp':card.hidden}" @click="(card.hidden = deck.player.is.inRoom ? true : false); deck.throwCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div></div></div></div><script type=module>
+觀眾 {{ deck.audience.length }} 人</div></div><div class="ts-grid is-3-columns" v-if=debug><div class=column><span>【狀況】{{ deck.is.starting ? '開始' : '等待' }}<br>【玩家編號 / ID】{{ deck.player.number }} / {{ deck.player.id }}<br>【是否在遊戲房裡】{{ deck.player.is.inRoom }}<br>【是否為觀眾】{{ deck.player.is.audience }}<br></span></div><div class=column>【玩家們】{{ deck.players.map(p=>p.id) }}<br>【觀眾們】{{ deck.audience }}<br></div><div class=column>【卡池數量】{{ deck.remaining }}<br>桌上卡片數量：{{ deck.table.remaining }}<br><template v-for="player in deck.players">玩家 {{ player.id }} 卡片數量：{{ player.remaining }}<br></template></div></div><br><div v-if=deck.is.loading>正在載入牌桌中...</div><div v-else-if=deck.is.error>出錯</div><div v-else-if=!deck.id style=width:100%><div class="ts-content is-center-aligned is-padded"><button class=ts-button @click="deck.create().always(()=>{
+                    window.location.replace('?deck_id=' + deck.id);
+                })">創建新遊戲</button></div><div class="ts-divider is-center-text is-section">或者</div><div class="ts-wrap ts-content is-center-aligned is-padded"><div class=ts-input style=width:200px><input type=text placeholder=房間編號 v-model=input.deck_id></div><button class="ts-button is-small" @click="window.location.replace('?deck_id='+input.deck_id)">進入遊戲房</button></div></div><div v-else-if="deck.is.available && (deck.player.is.inRoom || deck.player.is.audience)"><div class=ts-container><div class="ts-grid table"><div class="column is-14-wide"><div class=ts-grid style=padding-left:80px><div v-for="card in deck.table.cards" class="card column animate__animated" :class="{'animate__fadeOutDown':card.pickup}" @click="(card.pickup = deck.player.is.inRoom ? true : false); deck.pickupCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div><div class="deck column is-2-wide"><div v-for="i in deck.remaining" class="back-card animate__animated" @click=deck.drawCards(1) v-cloak><img :src="api.getImg('back')" height=160px></div></div></div></div><div class=ts-container><div class="hand animate__animated animate__slideInLeft"><div v-for="card in deck.player.cards" class="card animate__animated" :class="{'animate__fadeOutUp':card.hidden}" @click="(card.hidden = deck.player.is.inRoom ? true : false); deck.throwCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div></div></div></div><script type=module>
     import '/js/ajax.js';
     import { createApp, reactive, onMounted, computed, nextTick, watch } from '/framework/vue.js';
     // 
@@ -23,11 +22,11 @@
                 let date = new Date();
                 date.setTime(date.getTime() + (minutes * 60 * 1000));
                 document.cookie = `${name}=${value};expires=${date.toUTCString()};path=${window.location.pathname};domain=${document.domain};`;
-                return cookie.get(name);
+                return value;
             },
             get: (cName)=>{
                 const name = cName + "=";
-                const cDecoded = decodeURIComponent(document.cookie); //to be careful
+                const cDecoded = decodeURIComponent(document.cookie);
                 const cArr = cDecoded .split('; ');
                 let res;
                 cArr.forEach(val => {
@@ -143,7 +142,7 @@
                     updating: false,
                     audience: computed(()=>{ return !deck.player.is.inRoom && deck.audience.includes(deck.player.id); })
                 },
-                autoJoin: cookie.get('autoJoin') ? cookie.get('autoJoin') : cookie.set('autoJoin', 0),
+                autoJoin: (cookie.get('autoJoin') ? cookie.get('autoJoin') : cookie.set('autoJoin', false)) == true,
                 max: 6,
                 cards: [],
                 update: (updateNow=true)=>{
