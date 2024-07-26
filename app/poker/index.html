@@ -11,8 +11,8 @@
                             window.location.replace('?deck_id=' + deck.id);
                         })">創建新遊戲</button><div class="ts-divider is-center-text is-section">或者</div><div class="ts-input is-end-labeled"><input type=text v-model=input.deck_id>
 <button class="ts-button label" @click="window.location.replace('?deck_id='+input.deck_id)">進入遊戲房</button></div></div></div></div></div><div v-else-if="deck.is.available && (deck.player.is.inRoom || deck.player.is.audience)"><div class=ts-container><div class="ts-grid table"><div class="column is-14-wide"><div class=ts-grid style=padding-left:80px><div v-for="card in deck.table.cards" class="card column animate__animated" :class="{'animate__fadeOutDown':card.pickup}" @click="(card.pickup = deck.player.is.inRoom ? true : false); deck.pickupCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div><div class="deck column is-2-wide"><div v-for="i in deck.remaining" class="back-card animate__animated" @click=deck.drawCards(1) v-cloak><img :src="api.getImg('back')" height=160px></div></div></div></div><div class=ts-container><div class="hand animate__animated animate__slideInLeft"><div v-for="card in deck.player.cards" class="card animate__animated" :class="{'animate__fadeOutUp':card.hidden}" @click="(card.hidden = deck.player.is.inRoom ? true : false); deck.throwCards(card.code)" v-cloak><img :src=card.image height=160px></div></div></div></div></div></div><script type=module>
-    import '/js/ajax.esm.js';
-    import { createApp, reactive, onMounted, computed, nextTick, watch } from '/framework/vue.esm.js';
+    import '/js/ajax.js';
+    import { createApp, reactive, onMounted, computed, nextTick, watch } from '/framework/vue.js';
     // 
     const App = createApp({setup(){
         const params = new URLSearchParams(window.location.search);
