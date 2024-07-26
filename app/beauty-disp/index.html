@@ -142,7 +142,9 @@
                 getPosts().always(()=>{
                     setInterval(() => {
                         nextTick(()=>{
-                            if(isScrollBottom()){ posts.is.noMore || masonry.is.layouting || getPosts(); }
+                            masonry.imagesLoaded(()=>{
+                                if(isScrollBottom()){ posts.is.noMore || masonry.is.layouting || getPosts(); }
+                            });
                         });
                     }, 500);
                     // let scrollChecker = setInterval(async()=>{
