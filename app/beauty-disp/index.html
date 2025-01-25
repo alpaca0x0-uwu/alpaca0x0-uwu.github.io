@@ -12,7 +12,7 @@
     // 
     const App = createApp({setup(){
         const proxyUrl = (url)=>{
-            return `https://corsproxy.io/?${encodeURIComponent(url)}`;
+            return `https://corsproxy.io/?url=${encodeURIComponent(url)}`;
             // return `https://api.allorigins.win/get?url=${encodeURIComponent(url)}`;
         }
         // google adsense
