@@ -34,7 +34,7 @@
             page: 0,
             totalPool: computed(()=>{
                 let len = posts.totalPagesCount > 1000 ? 1000 : posts.totalPagesCount;
-                let arr = Array.from({ length: len }, (_, i) => i);
+                let arr = Array.from({ length: len }, (_, i) => posts.totalPagesCount-i);
                 arr = arr.filter(a=>!posts.pool.includes(a));
                 return arr;
             }),
