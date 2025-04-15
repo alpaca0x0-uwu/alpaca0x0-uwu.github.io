@@ -1,9 +1,9 @@
 <!doctype html><html lang=zh class=is-dark><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=content-language content="zh-tw"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta property="og:type" content="website"><meta property="og:url" content="https://uwu.alpaca.tw/app/beauty-ptt/"><meta name=referrer content="no-referrer"><title>BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋</title>
 <meta name=title content="BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋"><meta property="og:title" content="BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋"><meta name=subject content="表特爬蟲，圖源自 PTT 表特板"><meta name=description content="表特爬蟲，圖源自 PTT 表特板"><meta property="og:description" content="表特爬蟲，圖源自 PTT 表特板"><meta property="og:image" content="/app/beauty-ptt/feature.png"><link rel=apple-touch-icon sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel=android-chrome type=image/png sizes=192x192 href=../../android-chrome-192x192.png><link rel=android-chrome type=image/png sizes=512x512 href=../../android-chrome-512x512.png><link rel=apple-touch-icon type=image/png sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel="shortcut icon" href=../../favicon.ico type=image/x-icon><link rel=icon href=../../favicon.ico type=image/x-icon><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel=stylesheet><script async src="https://www.googletagmanager.com/gtag/js?id=G-B7KMWZNLKP"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date),gtag("config","G-B7KMWZNLKP")</script><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417118187182876" crossorigin=anonymous></script><link rel=stylesheet href=../../framework/tocas/tocas.min.css><script src=../../framework/tocas/tocas.min.js></script><link rel=stylesheet href=../../css/vue.css><script src=../../js/sweetalert2.js></script></head><body><header><div class="ts-box is-sharp is-raised" style=position:fixed;width:100%;z-index:999999><div class="ts-content is-secondary"><div class="ts-breadcrumb is-chevroned"><a class=item href=../>Apps</a>
 <a class=item href=#!>BeautyPTT 表特爬蟲</a></div></div></div><div style=height:47px></div></header><main><div id=App><div class="ts-container is-fitted" style=--width:1500px><div class="ts-content is-center-aligned"><div><ins class=adsbygoogle style=display:block data-ad-format=fluid data-ad-layout-key=-hg-k+34-7c+7i data-ad-client=ca-pub-8417118187182876 data-ad-slot=5709143475></ins></div><component is=script v-cloak>(adsbygoogle = window.adsbygoogle || []).push({
-});</component></div><div id=imagesBoard class="masonry [660px]-:is-1-columns [660px]+:is-2-columns [1050px]+:is-3-columns [1200px]+:is-4-columns"><template v-for="(thePost, thePostIndex) in posts.data"><template v-for="(theMedia, theMediaIndex) in thePost.images"><div :id="`media_${thePostIndex}_${theMediaIndex}`" class="masonry-item ts-box" style=opacity:0 v-cloak><div class=ts-content><img :src=theMedia.src @error="thePost.images.splice(theMediaIndex, 1); images.count--;" style=width:100%></div><div class="ts-mask is-top"><a class=ts-content style=color:#fff target=_blank :href="`${posts.site}${thePost.link}`"><div class=ts-header><span class="ts-badge is-secondary is-small is-dense is-end-spaced">{{ theMedia.index }}</span>
+});</component></div><div id=imagesBoard class="masonry [660px]-:is-1-columns [660px]+:is-2-columns [1050px]+:is-3-columns [1200px]+:is-4-columns"><template v-for="(thePost, thePostIndex) in posts.data"><template v-for="(theMedia, theMediaIndex) in thePost.images"><template v-if=theMedia.src><div :id="`media_${thePostIndex}_${theMediaIndex}`" class="masonry-item ts-box" style=opacity:0 v-cloak><div class=ts-content><img :src=theMedia.src @error="thePost.images.splice(theMediaIndex, 1); images.count--;" style=width:100%></div><div class="ts-mask is-top"><a class=ts-content style=color:#fff target=_blank :href="`${posts.site}${thePost.link}`"><div class=ts-header><span class="ts-badge is-secondary is-small is-dense is-end-spaced">{{ theMedia.index }}</span>
 {{ thePost.title }}</div><div class="ts-text is-truncated is-tiny">{{ thePost.desc }}</div></a></div></div><div class="masonry-item ts-box" style=opacity:0><div v-if="theMediaIndex % ads.gap == 0" class=ts-box><div class=ts-content><div class="ts-header is-heavy">Ads by Google Adsense</div></div><div class=ts-content><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8417118187182876 data-ad-slot=5369836314 data-ad-format=auto data-full-width-responsive=true></ins></div><component is=script v-cloak>(adsbygoogle = window.adsbygoogle || []).push({
-});</component></div></div></template></template><div class=ts-snackbar style=position:fixed;right:16px;bottom:16px;z-index:999 v-cloak><div class=content><div class="ts-header is-start-icon is-big"><template v-if="masonry.is.layouting || posts.is.getting || posts.is.initing || images.is.getting || images.is.rendering"><span class="ts-icon is-spinning is-spinner-icon"></span>
+});</component></div></div></template></template></template><div class=ts-snackbar style=position:fixed;right:16px;bottom:16px;z-index:999 v-cloak><div class=content><div class="ts-header is-start-icon is-big"><template v-if="masonry.is.layouting || posts.is.getting || posts.is.initing || images.is.getting || images.is.rendering"><span class="ts-icon is-spinning is-spinner-icon"></span>
 {{
 masonry.is.layouting ? '正在排列圖片...' :
 images.is.getting ? `正在載入圖片... (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})` :
@@ -12,10 +12,11 @@ images.is.rendering ? `正在渲染圖片... (${posts.data.reduce((s, p) => s + 
 posts.is.initing ? '正在初始化...' :
 ''
 }}
-</template><template v-else><span class="ts-icon is-check-icon"></span>
+</template><template v-else><span class=ts-icon :class="posts.is.noMore ? 'is-check-icon' : 'is-angles-down-icon'"></span>
 {{
-!posts.is.noMore ? '滑動載入更多' :
-`已載入圖片 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})`
+posts.is.noMore ?
+'圖片全部載入完畢 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})' :
+'向下滑動載入更多 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})'
 }}</template></div></div></div></div></div></div><style>.masonry{}.masonry-item{}.masonry.is-1-columns .masonry-item{width:100%}.masonry.is-2-columns .masonry-item{width:50%}.masonry.is-3-columns .masonry-item{width:33%}.masonry.is-4-columns .masonry-item{width:25%}</style><script type=module>
     import '/js/ajax.js';
     import '/js/masonry.js';
@@ -140,11 +141,13 @@ posts.is.initing ? '正在初始化...' :
                                     }
                                 });
                                 return URL.createObjectURL(blob)
-                            }).catch(error=>{}).then(blobURL => {
+                            }).catch(error=>{
+                                theImage.src = false;
+                            }).then(blobURL => {
                                 theImage.src = blobURL;
-                            }).finally(()=>{
                                 images.count++;
                                 theImage.index = images.count;
+                            }).finally(()=>{
                                 idx++;
                                 if(idx>=p.images.length){
                                     posts.data.push(p);
@@ -156,55 +159,18 @@ posts.is.initing ? '正在初始化...' :
                                     });
                                 }
                             });
-                            // new Promise((resolve, reject) => {
-                            //     const preImg = new Image();
-                            //     preImg.onload = () => resolve(preImg);
-                            //     preImg.onerror = reject;
-                            //     preImg.src = theImage.src;
-                            // }).then((preImg) => {
-                            //     images.count++;
-                            //     theImage.index = images.count;
-                            // }).catch((err) => {
-                            //     // console.error('圖片載入失敗', err);
-                            // }).finally(()=>{
-                            //     idx++;
-                            //     if(idx>=p.images.length){
-                            //         posts.data.push(p);
-                            //         nextTick(()=>{
-                            //             masonry.imagesLoaded(()=>{
-                            //                 masonry.layout();
-                            //             });
-                            //         });
-                            //     }
-                            // });
                         });
-                        masonry.imagesLoaded(()=>{
-                            // posts.data.push(p);
-                            // layout
-                            // nextTick(()=>{
-                            //     log('waiting images loaded...')
-                            //     masonry.imagesLoaded(()=>{
-                            //         log('images loaded')
-                            //         masonry.layout();
-                            //     });
-                            // });
-                        });
+                        p.images = p.images.filter((theImage) => theImage.src);
                     }).always(()=>{
                         flag++;
                         if(flag >= ps.length){
-                            // layout
-                            // nextTick(()=>{
-                            //     masonry.imagesLoaded(()=>{
-                            //         log('waiting layout...')
-                            //         masonry.layout();
-                            //     });
-                            // });
                             masonry.layout();
-                            posts.is.getting = false;
                         }
                     });
                 });
-            }).always(()=>{});
+            }).always(()=>{
+                posts.is.getting = false;
+            });
         };
 
         let isScrollBottom = ()=>{
@@ -256,6 +222,14 @@ posts.is.initing ? '正在初始化...' :
                 dataType: 'html',
             }).fail((xhr, status, error)=>{
                 console.error(xhr);
+                Swal.fire({
+                    icon: 'error',
+                    title: '發生未知錯誤',
+                    text: '可能是代理伺服器請求過程遇到問題，請重整後再試一次',
+                    confirmButtonText: '重整',
+                    allowOutsideClick: false,
+                    allowEscapeKey: false,
+                }).then(()=>{ window.location.reload(true); });
             }).done((resp)=>{
                 console.log('initializing...');
                 const parser = new DOMParser();
@@ -269,20 +243,9 @@ posts.is.initing ? '正在初始化...' :
                 posts.is.initing = false;
             });
         }
-        
-        // 
-        // watch(()=>posts.data.length, () => {
-        //     // layout
-        //     nextTick(()=>{
-        //         console.log('watch')
-        //         masonry.imagesLoaded(()=>{
-        //             masonry.layout();
-        //         });
-        //     });
-        // });
 
         onMounted(()=>{
-            fetch('https://i.imgur.com/removed.png').then(res => images.blocked.push(res.blob()));
+            fetch(proxyUrl('https://i.imgur.com/removed.png')).then(res => images.blocked.push(res.blob()));
             // 
             masonry.obj = masonry.init();
             masonry.obj.on('layoutComplete', (items)=>{
@@ -305,17 +268,7 @@ posts.is.initing ? '正在初始化...' :
                         }
                     });
                 }, 500);
-                // let scrollChecker = setInterval(async()=>{
-                //     nextTick(()=>{
-                //         masonry.imagesLoaded(()=>{
-                //             if(isScrollBottom()){ posts.is.noMore || getPosts(); }
-                //             else{ clearInterval(scrollChecker); }
-                //         });
-                //     })
-                // }, 1000);
             })
-            //
-            // addEventListener("scroll", (e) => {});
         });
         // 
         return { posts, ads, window, document, masonry, images };
