@@ -15,8 +15,8 @@ posts.is.initing ? '正在初始化...' :
 </template><template v-else><span class=ts-icon :class="posts.is.noMore ? 'is-check-icon' : 'is-angles-down-icon'"></span>
 {{
 posts.is.noMore ?
-'圖片全部載入完畢 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})' :
-'向下滑動載入更多 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})'
+`圖片全部載入完畢 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})` :
+`向下滑動載入更多 (${posts.data.reduce((s, p) => s + p.images.length, 0)}/${images.count})`
 }}</template></div></div></div></div></div></div><style>.masonry{}.masonry-item{}.masonry.is-1-columns .masonry-item{width:100%}.masonry.is-2-columns .masonry-item{width:50%}.masonry.is-3-columns .masonry-item{width:33%}.masonry.is-4-columns .masonry-item{width:25%}</style><script type=module>
     import '/js/ajax.js';
     import '/js/masonry.js';
