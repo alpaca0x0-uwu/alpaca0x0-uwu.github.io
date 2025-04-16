@@ -3,12 +3,13 @@
 <a class=item href=#! onclick=window.location.reload()>BeautyPTT 表特爬蟲</a></div></div></div><div style=height:47px></div></header><main><div id=App><div class="ts-container is-fitted" style=--width:1500px><div class="ts-content is-center-aligned"><div><ins class=adsbygoogle style=display:block data-ad-format=fluid data-ad-layout-key=-hg-k+34-7c+7i data-ad-client=ca-pub-8417118187182876 data-ad-slot=5709143475></ins></div><component is=script v-cloak>(adsbygoogle = window.adsbygoogle || []).push({
 });</component></div><div id=imagesBoard class="masonry [660px]-:is-1-columns [660px]+:is-2-columns [1050px]+:is-3-columns [1200px]+:is-4-columns"><template v-for="(thePost, thePostIndex) in posts.data"><template v-for="(theMedia, theMediaIndex) in thePost.images"><template v-if=theMedia.src><div :id="`media_${thePostIndex}_${theMediaIndex}`" class="masonry-item ts-box" style=opacity:0 v-cloak><div class=ts-image><img :src=theMedia.src @error="thePost.images.splice(theMediaIndex, 1); images.count--;" style=width:100%></div><div class="ts-mask is-top"><a class=ts-content style=color:#fff target=_blank :href="`${posts.site}${thePost.link}`"><div class=ts-header><span class="ts-badge is-secondary is-small is-dense is-end-spaced">{{ theMedia.index }}</span>
 {{ thePost.title }}</div><div class="ts-text is-truncated is-tiny">{{ thePost.desc }}</div></a></div></div><div v-if="theMediaIndex % ads.gap == 0" class="masonry-item ts-box" style=opacity:0><div class=ts-content><div class="ts-header is-heavy">Ads by Google Adsense</div></div><div class="ts-content is-fitted"><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8417118187182876 data-ad-slot=5369836314 data-ad-format=auto data-full-width-responsive=true></ins></div><component is=script v-cloak>(adsbygoogle = window.adsbygoogle || []).push({
-});</component></div></template></template></template><div class=ts-snackbar style=position:fixed;right:16px;bottom:16px;z-index:999 v-cloak><div class=content><div class="ts-header is-start-icon is-large"><template v-if="posts.is.getting || posts.is.initing || images.is.getting || images.is.rendering"><span class="ts-icon is-spinning is-spinner-icon"></span>
+});</component></div></template></template></template><div class=ts-snackbar style=position:fixed;right:16px;bottom:16px;z-index:999 v-cloak><div class=content><div class="ts-header is-start-icon is-large"><template v-if="images.is.getting || posts.is.getting || pages.is.getting || images.is.rendering || pages.is.initing"><span class="ts-icon is-spinning is-spinner-icon"></span>
 {{
 images.is.getting ? `正在載入圖片... (${images.countLoaded}/${images.count})` :
-posts.is.getting ? `正在獲取文章...` :
+posts.is.getting ? `正在獲取文章... (${posts.pool.length}/${posts.totalPool.length})` :
+pages.is.getting ? `正在獲取頁面... (${pages.pool.length}/${pages.totalPool.length})` :
 images.is.rendering ? `正在渲染圖片... (${images.countLoaded}/${images.count})` :
-posts.is.initing ? '正在初始化...' :
+pages.is.initing ? '正在初始化...' :
 ''
 }}
 </template><template v-else-if="images.count>0"><span class=ts-icon :class="posts.is.noMore ? 'is-check-icon' : 'is-angles-down-icon'"></span>
@@ -21,7 +22,7 @@ posts.is.noMore ?
 載入失敗 ( ´･･)ﾉ(._.`)</template></div></div></div></div><div class="ts-mask is-centered is-blurring" v-show="images.countLoaded < 1"><span class=ts-header style=color:#fff><img src=../../img/loading.gif height=32px>
 &nbsp;
 載入大量圖片需要一點時間...
-</span><span class="ts-text is-secondary">(這取決於代理伺服器及您的網速)</span></div></div></div><style>.masonry{}.masonry-item{transition:.2s ease;overflow:hidden}.masonry-item:has(ins.adsbygoogle[data-ad-status=unfilled]){display:none!important}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}ins.adsbygoogle:not([data-ad-status]){opacity:0}.masonry.is-1-columns .masonry-item{width:100%}.masonry.is-2-columns .masonry-item{width:50%}.masonry.is-3-columns .masonry-item{width:33%}.masonry.is-4-columns .masonry-item{width:25%}</style><script type=module>
+</span><span class="ts-text is-secondary">(這取決於代理伺服器及您的網速)</span></div></div></div><style>.masonry{}.masonry-item{transition:.2s ease;overflow:hidden}.masonry-item:has(ins.adsbygoogle[data-ad-status=unfilled]){display:none!important}ins.adsbygoogle:not([data-ad-status]){opacity:0}ins.adsbygoogle[data-ad-status=unfilled]{display:none!important}.masonry.is-1-columns .masonry-item{width:100%}.masonry.is-2-columns .masonry-item{width:50%}.masonry.is-3-columns .masonry-item{width:33%}.masonry.is-4-columns .masonry-item{width:25%}</style><script type=module>
     import '/js/ajax.js';
     import '/js/masonry.js';
     import '/js/imagesLoaded.js';
@@ -44,27 +45,27 @@ posts.is.noMore ?
             gap: 24,
         });
         // 
+        let pages = reactive({
+            totalPool: [],
+            pool: [],
+            is: {
+                getting: false,
+                initing: true,
+            },
+        });
         let posts = reactive({
             // site: 'https://ptt-info.tw',
             site: 'https://www.ptt.cc',
             is: {
                 getting: false,
-                noMore: false,
-                initing: true,
+                noMore: computed(()=>pages.pool.length>=pages.totalPool.length),
             },
             board: 'Beauty',
-            keyword: '', //'[正妹]',
-            totalPagesCount: 0,
+            keywords: ['[正妹]'],
             page: 0,
-            totalPool: computed(()=>{
-                let len = posts.totalPagesCount > 320 ? 320 : posts.totalPagesCount;
-                let arr = Array.from({ length: len }, (_, i) => posts.totalPagesCount-i);
-                arr = arr.filter(a=>!posts.pool.includes(a));
-                console.log(arr)
-                return arr;
-            }),
-            pool: [],
             data: [],
+            pool: [],
+            totalPool: [],
         });
         let images = reactive({
             count: 0,
@@ -76,9 +77,10 @@ posts.is.noMore ?
             blocked: [],
         });
         // 
-        const getPosts = (pageNum=posts.totalPool[(Math.floor(Math.random() * posts.totalPool.length))])=>{
-            if(posts.is.getting || posts.pool.includes(pageNum)){ return; }
-            posts.is.getting = true;
+        const getPosts = (pageNum=pages.totalPool[(Math.floor(Math.random() * pages.totalPool.length))])=>{
+            if(pages.pool.includes(pageNum)){ return; }
+            pages.pool.push(pageNum);
+            pages.is.getting = true;
             // waiting for all current images loaded
             log('images loaded')
             log(`getting page ${pageNum}...`)
@@ -98,83 +100,101 @@ posts.is.noMore ?
                 let sep = ps.findIndex((p)=>Array.from(p.classList).includes('r-list-sep'))
                 if(sep){ ps = ps.slice(0, sep); }
                 ps = ps.filter(p=>p.querySelector('.title a')).map(p=>{
+                    let title = p.querySelector('.title a').innerHTML.trim();
+                    let link = p.querySelector('.title a').getAttribute('href');
+                    if(!posts.keywords.some(k=>title.includes(k))){ return false; }
+                    posts.totalPool.push(link);
                     return {
-                        title: p.querySelector('.title a').innerHTML.trim(),
-                        link: p.querySelector('.title a').getAttribute('href'),
+                        title: title,
+                        link: link,
                         author: p.querySelector('.meta .author').innerHTML.trim(),
                         date: p.querySelector('.meta .date').innerHTML.trim(),
                         images: [],
                     };
-                });
+                }).filter(p=>p);
                 // 
-                let flag = 0;
-                ps.forEach((p, idx)=>{
-                    images.is.getting = true;
-                    $.ajax({
-                        url: proxyUrl(`${posts.site}${p.link}`),
-                        type: 'get',
-                        dataType: 'html',
-                        // async: false,
-                    }).done((html)=>{
-                        log(`got post [${pageNum}]${p.link}`)
-                        html = parser.parseFromString(html, 'text/html');
-                        p.images = Array.from(html.querySelectorAll('#main-container #main-content a')).map(img=>{
-                            let elType = img.tagName.toLowerCase();
-                            let src = '';
-                            if(elType==='img'){ src = img.getAttribute('src'); }
-                            else if(elType==='a'){
-                                if(['.jpg', '.jpeg', '.png', '.webp', '.gif'].some(c=>img.href?.toLowerCase()?.endsWith(c))){
-                                    src = img.href;
-                                }
-                            }
-                            if(src==='' || !['.jpg', '.jpeg', '.png', '.webp', '.gif'].some(c=>src.endsWith(c))){ return false; }
-                            return {
-                                index: null,
-                                src: src,
-                            }
-                        }).filter((img)=>img);
-                        // 
-                        let idx = 0;
-                        p.images.forEach((theImage, theImageIndex)=>{
-                            fetch(theImage.src).catch((error) => {
-                                return fetch(proxyUrl(theImage.src));
-                            }).then(res => res.blob())
-                            .then(blob => {
-                                images.blocked.forEach((blockedImageBlob, idx, arr) => {
-                                    if(blob.size < 1 || (blob.size===blockedImageBlob.size && blob.type===blockedImageBlob.type)){
-                                        throw new Error('Blocked blob.');
+                posts.is.getting = true;
+                Promise.all(
+                    ps.map((p) => {
+                        return new Promise((resolve, reject) => {
+                            $.ajax({
+                                url: proxyUrl(`${posts.site}${p.link}`),
+                                type: 'get',
+                                dataType: 'html',
+                            }).done((html) => {
+                                log(`got post from page ${pageNum}, ${p.link}`);
+                                html = parser.parseFromString(html, 'text/html');
+                                p.images = Array.from(html.querySelectorAll('#main-container #main-content a')).map(img => {
+                                    let elType = img.tagName.toLowerCase();
+                                    let src = '';
+                                    if (elType === 'img') {
+                                        src = img.getAttribute('src');
+                                    } else if (elType === 'a') {
+                                        if (['.jpg', '.jpeg', '.png', '.webp', '.gif'].some(c => img.href?.toLowerCase()?.endsWith(c))) {
+                                            src = img.href;
+                                        }
                                     }
-                                });
-                                return URL.createObjectURL(blob)
-                            }).catch(error=>{
-                                theImage.src = false;
-                            }).then(blobURL => {
-                                theImage.src = blobURL;
-                                images.count++;
-                                theImage.index = images.count;
-                            }).finally(()=>{
-                                idx++;
-                                if(idx>=p.images.length){
-                                    posts.data.push(p);
+                                    if (src === '' || !['.jpg', '.jpeg', '.png', '.webp', '.gif'].some(c => src.endsWith(c))) {
+                                        return false;
+                                    }
+                                    return {
+                                        index: null,
+                                        src: src,
+                                    };
+                                }).filter(img => img);
+                                images.is.getting = true;
+                                Promise.all(
+                                    p.images.map((theImage) => {
+                                        return new Promise((resolve, reject) => {
+                                            fetch(theImage.src)
+                                                .then(res => res.ok ? resolve(res) : Promise.reject())
+                                                .catch(() => fetch(proxyUrl(theImage.src)))
+                                                .then(res => res.ok ? resolve(res) : Promise.reject())
+                                                .catch(reject);
+                                        })
+                                        .then(res => res.blob())
+                                        .then(blob => {
+                                            images.blocked.forEach((blockedImageBlob) => {
+                                                if (blob.size < 1 || (blob.size === blockedImageBlob.size && blob.type === blockedImageBlob.type)) {
+                                                    throw new Error('Blocked blob.');
+                                                }
+                                            });
+                                            return URL.createObjectURL(blob);
+                                        })
+                                        .then(blobURL => {
+                                            theImage.src = blobURL;
+                                            images.count++;
+                                            theImage.index = images.count;
+                                        })
+                                        .catch(() => {
+                                            theImage.src = false;
+                                        });
+                                    })
+                                ).finally(() => {
                                     images.is.getting = false;
-                                    nextTick(()=>{
-                                        masonry.imagesLoaded(()=>{
+                                    p.images = p.images.filter(theImage => theImage.src);
+                                    posts.data.push(p);
+                                    nextTick(() => {
+                                        masonry.imagesLoaded(() => {
                                             masonry.layout();
                                         });
                                     });
-                                }
+                                    resolve();
+                                });
+                                resolve(html);
+                            }).fail(reject=>{
+                                Promise.reject();
+                            }).always(()=>{
+                                posts.pool.push(p.link);
                             });
                         });
-                        p.images = p.images.filter((theImage) => theImage.src);
-                    }).always(()=>{
-                        flag++;
-                        if(flag >= ps.length){
-                            masonry.layout();
-                        }
-                    });
+                    })
+                ).finally(() => {
+                    posts.is.getting = false;
+                    masonry.layout();
                 });
             }).always(()=>{
-                posts.is.getting = false;
+                pages.is.getting = false;
             });
         };
 
@@ -221,7 +241,8 @@ posts.is.noMore ?
         });
 
         const initPosts = ()=>{
-            posts.is.initing = true;
+            pages.is.initing = true;
+            console.log('initializing...');
             return $.ajax({
                 url: proxyUrl(`${posts.site}/bbs/${posts.board}/index.html`),
                 type: 'get',
@@ -237,16 +258,16 @@ posts.is.noMore ?
                     allowEscapeKey: false,
                 }).then(()=>{ window.location.reload(true); });
             }).done((resp)=>{
-                console.log('initializing...');
                 const parser = new DOMParser();
                 let html = parser.parseFromString(resp, 'text/html');
                 let preBtn = html.querySelectorAll('#main-container #action-bar-container .action-bar .btn-group.btn-group-paging .btn.wide')[1]
-                posts.totalPagesCount = parseInt(preBtn.getAttribute('href').split('/index')[1].split('.')[0]);
+                let maxPage = parseInt(preBtn.getAttribute('href').split('/index')[1].split('.')[0]);
                 // 
-                // posts.pool.push(pageNum);
-                // posts.totalCount = resp.data.totalNum;
+                let len = maxPage > 320 ? 320 : maxPage;
+                pages.totalPool = Array.from({ length: len }, (_, i) => maxPage-i);
+                console.log(`got pages total pool：`, pages.totalPool);
             }).always(()=>{
-                posts.is.initing = false;
+                pages.is.initing = false;
             });
         };
 
@@ -264,20 +285,28 @@ posts.is.noMore ?
             });
             // 
             initPosts().then(()=>{
-                if(!posts.totalPagesCount){ return; }
+                if(!pages.totalPool.length){ return; }
                 getPosts();
                 // 
                 setInterval(() => {
                     nextTick(()=>{
-                        if(posts.data.length>0){ masonry.layout(); }
+                        if(images.countLoaded>0){ masonry.layout(); }
                         if(isScrollBottom()){ 
-                            posts.is.noMore || getPosts(); 
+                            // 沒有更多文章
+                            posts.is.noMore || 
+                            // 頁數請求佇列限制
+                            (pages.totalPool.length-pages.pool.length >= 1) || 
+                            // 文章請求佇列限制
+                            (posts.totalPool.length-posts.pool.length >= 8) || 
+                            // 圖片請求佇列限制
+                            (images.count-images.countLoaded >= 64) || 
+                            getPosts(); 
                         }
                     });
                 }, 500);
             })
         });
         // 
-        return { posts, ads, window, document, masonry, images };
+        return { posts, ads, window, document, masonry, images, pages };
     }}).mount('#App');
 </script></main><footer><script></script></footer></body></html>
