@@ -292,10 +292,13 @@ posts.is.noMore ?
                     nextTick(()=>{
                         if(images.countLoaded>0){ masonry.layout(); }
                         if(isScrollBottom()){ 
+                            // console.log(`頁數${pages.totalPool.length}/${pages.pool.length}`)
+                            // console.log(`文章${posts.totalPool.length}/${posts.pool.length}`)
+                            // console.log(`圖片${images.count}/${images.countLoaded}`);
                             // 沒有更多文章
                             posts.is.noMore || 
-                            // 頁數請求佇列限制
-                            (pages.totalPool.length-pages.pool.length >= 1) || 
+                            // 等待頁面請求
+                            pages.is.getting || 
                             // 文章請求佇列限制
                             (posts.totalPool.length-posts.pool.length >= 8) || 
                             // 圖片請求佇列限制
