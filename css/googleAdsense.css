@@ -1,0 +1,19 @@
+/* [載入中] 本體 */
+ins.adsbygoogle:not([data-ad-status]) {
+    opacity: 0;
+}
+
+/* [載入失敗] 本體 */
+ins.adsbygoogle[data-ad-status="unfilled"] {
+    display: none !important;
+}
+
+/* [載入中] 容器 */
+.ads:has(ins.adsbygoogle:not([data-ad-status])) {
+    opacity: 0;
+}
+
+/* [載入失敗] 容器 */
+.ads:has(ins.adsbygoogle[data-ad-status="unfilled"]) {
+    display: none !important;
+}
