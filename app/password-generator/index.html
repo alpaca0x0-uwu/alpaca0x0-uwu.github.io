@@ -27,10 +27,10 @@
                     ...Object.entries(password.symbols.sign).filter(([_, v])=>v).map(([k])=>k),
                 ];
                 password.text = '';
+                if(table.length < 1){ return; }
                 for(let i=0; i<password.length; i++) {
                     password.text += table[Math.floor(Math.random() * table.length)]
                 }
-                console.log(password.text)
             },
             copy: ()=>{
                 navigator.clipboard.writeText(password.text)
