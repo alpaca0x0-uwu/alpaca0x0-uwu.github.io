@@ -11,7 +11,7 @@ const Cookie = {
     load(name) {
         try {
             let obj = JSON.parse(Cookie.get(name));
-            return typeof obj === 'object' ? obj : {};
+            return typeof obj === 'object' && obj !== null ? obj : {};
         } catch (error) { return {}; }
     },
 }
