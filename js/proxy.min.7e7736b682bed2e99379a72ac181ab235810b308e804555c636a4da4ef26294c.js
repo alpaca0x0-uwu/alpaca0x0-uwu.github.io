@@ -1,0 +1,1 @@
+const formatedUrl=e=>`https://api.codetabs.com/v1/proxy/?quest=${encodeURIComponent(e)}`;import"/js/ajax.js";const ajax=(...e)=>(e?.[0]?.url&&(e[0].url=formatedUrl(e[0].url)),$.ajax(...e));export default{url:formatedUrl,ajax}

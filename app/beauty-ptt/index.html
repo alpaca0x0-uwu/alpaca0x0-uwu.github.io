@@ -24,9 +24,9 @@ posts.is.noMore ?
 載入大量圖片需要一點時間...
 </span><span class="ts-text is-secondary">(這取決於代理伺服器及您的網速)</span></div></div></div><style>.masonry{}.masonry-item{transition:.2s ease;overflow:hidden}.masonry.is-1-columns .masonry-item{width:100%}.masonry.is-2-columns .masonry-item{width:50%}.masonry.is-3-columns .masonry-item{width:33%}.masonry.is-4-columns .masonry-item{width:25%}</style><script type=module>
     import '/js/ajax.js';
+    import Proxy from '/js/proxy.min.7e7736b682bed2e99379a72ac181ab235810b308e804555c636a4da4ef26294c.js';
     import '/js/masonry.js';
     import '/js/imagesLoaded.js';
-    import '/js/ajax.js';
     import { createApp, onMounted, reactive, nextTick, computed, watch, ref } from '/framework/vue.js';
     // 
     const App = createApp({setup(){
@@ -86,8 +86,8 @@ posts.is.noMore ?
             log(`getting page ${pageNum}...`)
             const parser = new DOMParser();
             // 
-            return $.ajax({
-                url: proxyUrl(`${posts.site}/bbs/${posts.board}/index${pageNum}.html`),
+            return Proxy.ajax({
+                url: `${posts.site}/bbs/${posts.board}/index${pageNum}.html`,
                 type: 'get',
                 dataType: 'html',
                 // async: false,
@@ -117,8 +117,8 @@ posts.is.noMore ?
                 Promise.all(
                     ps.map((p) => {
                         return new Promise((resolve, reject) => {
-                            $.ajax({
-                                url: proxyUrl(`${posts.site}${p.link}`),
+                            Proxy.ajax({
+                                url: (`${posts.site}${p.link}`),
                                 type: 'get',
                                 dataType: 'html',
                             }).done((html) => {
@@ -148,7 +148,7 @@ posts.is.noMore ?
                                         return new Promise((resolve, reject) => {
                                             fetch(theImage.src)
                                                 .then(res => res.ok ? resolve(res) : Promise.reject())
-                                                .catch(() => fetch(proxyUrl(theImage.src)))
+                                                .catch(() => fetch(Proxy.url(theImage.src)))
                                                 .then(res => res.ok ? resolve(res) : Promise.reject())
                                                 .catch(reject);
                                         })
@@ -243,8 +243,8 @@ posts.is.noMore ?
         const initPosts = ()=>{
             pages.is.initing = true;
             console.log('initializing...');
-            return $.ajax({
-                url: proxyUrl(`${posts.site}/bbs/${posts.board}/index.html`),
+            return Proxy.ajax({
+                url: (`${posts.site}/bbs/${posts.board}/index.html`),
                 type: 'get',
                 dataType: 'html',
             }).fail((xhr, status, error)=>{
@@ -272,7 +272,7 @@ posts.is.noMore ?
         };
 
         onMounted(()=>{
-            fetch(proxyUrl('https://i.imgur.com/removed.png')).then(res => images.blocked.push(res.blob()));
+            fetch(Proxy.url('https://i.imgur.com/removed.png')).then(res => images.blocked.push(res.blob()));
             // 
             masonry.obj = masonry.init();
             masonry.obj.on('layoutComplete', (items)=>{
