@@ -1,7 +1,7 @@
 <!doctype html><html lang=zh class=is-dark><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=content-language content="zh-tw"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta property="og:type" content="website"><meta property="og:url" content="https://uwu.alpaca.tw/app/beauty-ptt/"><meta name=referrer content="no-referrer"><title>BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋</title>
-<meta name=title content="BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋"><meta property="og:title" content="BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋"><meta name=subject content="表特爬蟲，圖源自 PTT 表特板"><meta name=description content="表特爬蟲，圖源自 PTT 表特板"><meta property="og:description" content="表特爬蟲，圖源自 PTT 表特板"><meta property="og:image" content="/app/beauty-ptt/feature.png"><link rel=apple-touch-icon sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel=android-chrome type=image/png sizes=192x192 href=../../android-chrome-192x192.png><link rel=android-chrome type=image/png sizes=512x512 href=../../android-chrome-512x512.png><link rel=apple-touch-icon type=image/png sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel="shortcut icon" href=../../favicon.ico type=image/x-icon><link rel=icon href=../../favicon.ico type=image/x-icon><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel=stylesheet><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417118187182876" crossorigin=anonymous></script><link rel=stylesheet href=../../css/googleAdsense.min.be00f4d0f51a610496b974aa14ab0e8d95db304947fab82131334c175c3d2dc5.css><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-54JDX46X")</script><script async type=application/javascript src=https://a.magsrv.com/ad-provider.js></script><link rel=stylesheet href=../../css/exoClick.min.26f5cc1e9558379de2f6b21a39ea3c5de35139c830a0338bef1ef43c47ca68c3.css><link rel=stylesheet href=../../framework/tocas/tocas.min.css><script src=../../framework/tocas/tocas.min.js></script><link rel=stylesheet href=../../css/vue.css><script src=../../js/sweetalert2.js></script></head><body><header><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54JDX46X" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><div class="ts-box is-sharp is-raised" style=position:fixed;width:100%;z-index:999999><div class="ts-content is-secondary"><div class="ts-breadcrumb is-chevroned"><a class=item href=../>Apps</a>
-<a class=item href=#! onclick=window.location.reload()>BeautyPTT 表特爬蟲</a></div></div></div><div style=height:47px></div></header><main><div id=App><div class="ts-container is-fitted" style=--width:1500px><div class="ts-content is-center-aligned"><div class=ads><ins class=eas6a97888e2 data-zoneid=5814864></ins><component is=script v-cloak>(AdProvider = window.AdProvider || []).push({ serve: {} });</component></div></div><div id=imagesBoard class="masonry [660px]-:is-1-columns [660px]+:is-2-columns [1050px]+:is-3-columns [1200px]+:is-4-columns"><template v-for="(thePost, thePostIndex) in posts.data"><template v-for="(theMedia, theMediaIndex) in thePost.images"><template v-if=theMedia.src><div :id="`media_${thePostIndex}_${theMediaIndex}`" class="masonry-item ts-box" style=opacity:0 v-cloak><div class=ts-image><img :src=theMedia.src @error="thePost.images.splice(theMediaIndex, 1); images.count--;" style=width:100%></div><div class="ts-mask is-top"><a class=ts-content style=color:#fff target=_blank :href="`${posts.site}${thePost.link}`"><div class=ts-header><span class="ts-badge is-secondary is-small is-dense is-end-spaced">{{ theMedia.index }}</span>
-{{ thePost.title }}</div><div class="ts-text is-truncated is-tiny">{{ thePost.desc }}</div></a></div></div><div v-if="theMediaIndex % ads.gap == 0" class="ads masonry-item ts-box" style=opacity:0><div class="ts-content is-fitted is-center-aligned"><ins class=eas6a97888e2 data-zoneid=5815854></ins><component is=script v-cloak>(AdProvider = window.AdProvider || []).push({ serve: {} });</component></div><div class="ts-mask is-faded is-top"><div class="ts-content is-vertically-fitted" style=color:#fff>Ads</div></div></div></template></template></template><div class=ts-snackbar style=position:fixed;right:16px;bottom:16px;z-index:999 v-cloak><div class=content><div class="ts-header is-start-icon is-large"><template v-if="images.is.getting || posts.is.getting || pages.is.getting || images.is.rendering || pages.is.initing"><span class="ts-icon is-spinning is-spinner-icon"></span>
+<meta name=title content="BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋"><meta property="og:title" content="BeautyPTT 表特爬蟲 | AlpacaUwU 羊駝屋"><meta name=subject content="表特爬蟲，圖源自 PTT 表特板"><meta name=description content="表特爬蟲，圖源自 PTT 表特板"><meta property="og:description" content="表特爬蟲，圖源自 PTT 表特板"><meta property="og:image" content="/app/beauty-ptt/feature.png"><link rel=apple-touch-icon sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel=android-chrome type=image/png sizes=192x192 href=../../android-chrome-192x192.png><link rel=android-chrome type=image/png sizes=512x512 href=../../android-chrome-512x512.png><link rel=apple-touch-icon type=image/png sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel="shortcut icon" href=../../favicon.ico type=image/x-icon><link rel=icon href=../../favicon.ico type=image/x-icon><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel=stylesheet><link rel=stylesheet href=../../css/googleAdsense.min.be00f4d0f51a610496b974aa14ab0e8d95db304947fab82131334c175c3d2dc5.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417118187182876" crossorigin=anonymous></script><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-54JDX46X")</script><link rel=stylesheet href=../../css/exoClick.min.c3de34f8251c6049f4544ece8d9bfd8db861ad5c75d14c92c3d407da64d620c5.css><script async type=application/javascript src=https://a.magsrv.com/ad-provider.js></script><link rel=stylesheet href=../../framework/tocas/tocas.min.css><script src=../../framework/tocas/tocas.min.js></script><link rel=stylesheet href=../../css/vue.css><script src=../../js/sweetalert2.js></script></head><body><header><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54JDX46X" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript><div class="ts-box is-sharp is-raised" style=position:fixed;width:100%;z-index:999999><div class="ts-content is-secondary"><div class="ts-breadcrumb is-chevroned"><a class=item href=../>Apps</a>
+<a class=item href=#! onclick=window.location.reload()>BeautyPTT 表特爬蟲</a></div></div></div><div style=height:47px></div></header><main><div id=App><div class="ts-container is-fitted" style=--width:1500px><div class="ts-content is-center-aligned"><div class=ads v-if="posts.data.length > 0 && images.count > 0"><ins class=eas6a97888e2 data-zoneid=5814864></ins><component is=script v-cloak>(AdProvider = window.AdProvider || []).push({ serve: {} });</component></div></div><div id=imagesBoard class="masonry [660px]-:is-1-columns [660px]+:is-2-columns [1050px]+:is-3-columns [1200px]+:is-4-columns"><template v-for="(thePost, thePostIndex) in posts.data"><template v-for="(theMedia, theMediaIndex) in thePost.images"><template v-if=theMedia.src><div :id="`media_${thePostIndex}_${theMediaIndex}`" class="masonry-item ts-box" style=opacity:0 v-cloak><div class=ts-image><img :src=theMedia.src @error="thePost.images.splice(theMediaIndex, 1); images.count--;" style=width:100%></div><div class="ts-mask is-top"><a class=ts-content style=color:#fff target=_blank :href="`${posts.site}${thePost.link}`"><div class=ts-header><span class="ts-badge is-secondary is-small is-dense is-end-spaced">{{ theMedia.index }}</span>
+{{ thePost.title }}</div><div class="ts-text is-truncated is-tiny">{{ thePost.desc }}</div></a></div></div><div v-if="theMediaIndex % ads.gap == 0" class="masonry-item ts-box" style=opacity:0><div class="ads ts-content is-fitted is-center-aligned"><ins class=eas6a97888e2 data-zoneid=5815604></ins><component is=script v-cloak>(AdProvider = window.AdProvider || []).push({ serve: {} });</component></div><div class="ts-mask is-faded is-top"><div class="ts-content is-vertically-fitted" style=color:#fff>Ads</div></div></div></template></template></template><div class=ts-snackbar style=position:fixed;right:16px;bottom:16px;z-index:999 v-cloak><div class=content><div class="ts-header is-start-icon is-large"><template v-if="images.is.getting || posts.is.getting || pages.is.getting || images.is.rendering || pages.is.initing"><span class="ts-icon is-spinning is-spinner-icon"></span>
 {{
 images.is.getting ? `正在載入圖片... (${images.countLoaded}/${images.count})` :
 posts.is.getting ? `正在獲取文章... (${posts.pool.length}/${posts.totalPool.length})` :
@@ -28,6 +28,8 @@ posts.is.noMore ?
     import { createApp, onMounted, reactive, nextTick, computed, watch, ref } from '/framework/vue.js';
     // 
     const App = createApp({setup(){
+		const DEV = true;
+		// 
         const log = (text='')=>{
             let time = new Date();
             console.log(`[${("0" + time.getMinutes()).slice(-2)}:${("0" + time.getSeconds()).slice(-2)}] ${text}`);
@@ -282,30 +284,30 @@ posts.is.noMore ?
                 masonry.is.layouting = false;
             });
             // 
-            initPosts().then(()=>{
-                if(!pages.totalPool.length){ return; }
-                getPosts();
-                // 
-                setInterval(() => {
-                    nextTick(()=>{
-                        if(images.countLoaded>0){ masonry.layout(); }
-                        if(isScrollBottom()){ 
-                            // console.log(`頁數${pages.totalPool.length}/${pages.pool.length}`)
-                            // console.log(`文章${posts.totalPool.length}/${posts.pool.length}`)
-                            // console.log(`圖片${images.count}/${images.countLoaded}`);
-                            // 沒有更多文章
-                            posts.is.noMore || 
-                            // 等待頁面請求
-                            pages.is.getting || 
-                            // 文章請求佇列限制
-                            (posts.totalPool.length-posts.pool.length >= 8) || 
-                            // 圖片請求佇列限制
-                            (images.count-images.countLoaded >= 64) || 
-                            getPosts(); 
-                        }
-                    });
-                }, 500);
-            })
+			initPosts().then(()=>{
+				if(!pages.totalPool.length){ return; }
+				getPosts();
+				// 
+				setInterval(() => {
+					nextTick(()=>{
+						if(images.countLoaded>0){ masonry.layout(); }
+						if(isScrollBottom()){ 
+							// console.log(`頁數${pages.totalPool.length}/${pages.pool.length}`)
+							// console.log(`文章${posts.totalPool.length}/${posts.pool.length}`)
+							// console.log(`圖片${images.count}/${images.countLoaded}`);
+							// 沒有更多文章
+							posts.is.noMore || 
+							// 等待頁面請求
+							pages.is.getting || 
+							// 文章請求佇列限制
+							(posts.totalPool.length-posts.pool.length >= 8) || 
+							// 圖片請求佇列限制
+							(images.count-images.countLoaded >= 64) || DEV ||
+							getPosts(); 
+						}
+					});
+				}, 500);
+			});
         });
         // 
         return { posts, ads, window, document, masonry, images, pages };
