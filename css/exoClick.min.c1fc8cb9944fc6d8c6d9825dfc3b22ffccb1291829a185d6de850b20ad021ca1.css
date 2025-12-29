@@ -1,0 +1,1 @@
+.ads:has(ins[class^=ea]){width:100%!important;max-width:100%!important;height:auto!important;max-height:unset!important;overflow-x:auto!important;overflow-y:hidden!important;scrollbar-width:none;-ms-overflow-style:none}.ads:has(ins[class^=ea])::-webkit-scrollbar{display:none}
