@@ -1,0 +1,1 @@
+const formatedUrl=e=>`https://cors.io/?url=${encodeURIComponent(e)}`;import"/js/ajax.js";const ajax=(...e)=>(e?.[0]?.url&&(e[0].url=formatedUrl(e[0].url)),$.ajax(...e).then(e=>(e=JSON.parse(e),e.body)));export default{url:formatedUrl,ajax}
