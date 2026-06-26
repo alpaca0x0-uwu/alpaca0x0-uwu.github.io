@@ -1,0 +1,266 @@
+<!doctype html><html lang=zh class=is-dark><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><meta http-equiv=content-language content="zh-tw"><meta http-equiv=X-UA-Compatible content="ie=edge"><meta property="og:type" content="website"><meta property="og:url" content="https://uwu.alpaca.tw/app/taiwan-cctv/"><meta name=referrer content="no-referrer"><title>台灣道路 CCTV | AlpacaUwU 羊駝屋</title><meta name=title content="台灣道路 CCTV | AlpacaUwU 羊駝屋"><meta property="og:title" content="台灣道路 CCTV | AlpacaUwU 羊駝屋"><meta name=subject content="台灣道路 CCTV 即時影像地圖"><meta name=description content="台灣道路 CCTV 即時影像地圖"><meta property="og:description" content="台灣道路 CCTV 即時影像地圖"><meta property="og:image" content="/feature.jpg"><link rel=apple-touch-icon sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel=android-chrome type=image/png sizes=192x192 href=../../android-chrome-192x192.png><link rel=android-chrome type=image/png sizes=512x512 href=../../android-chrome-512x512.png><link rel=apple-touch-icon type=image/png sizes=180x180 href=../../apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=../../favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=../../favicon-16x16.png><link rel="shortcut icon" href=../../favicon.ico type=image/x-icon><link rel=icon href=../../favicon.ico type=image/x-icon><meta name=author content="Alpaca"><link href=GitHub rel=me><link href=https://github.com/Alpaca0x0 rel=me><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel=stylesheet><link rel=stylesheet href=../../css/googleAdsense.min.be00f4d0f51a610496b974aa14ab0e8d95db304947fab82131334c175c3d2dc5.css><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8417118187182876" crossorigin=anonymous></script><script>(function(e,t,n,s,o){e[s]=e[s]||[],e[s].push({"gtm.start":(new Date).getTime(),event:"gtm.js"});var a=t.getElementsByTagName(n)[0],i=t.createElement(n),r=s!="dataLayer"?"&l="+s:"";i.async=!0,i.src="https://www.googletagmanager.com/gtm.js?id="+o+r,a.parentNode.insertBefore(i,a)})(window,document,"script","dataLayer","GTM-54JDX46X")</script><link rel=stylesheet href=../../css/exoClick.min.c1fc8cb9944fc6d8c6d9825dfc3b22ffccb1291829a185d6de850b20ad021ca1.css><script async type=application/javascript src=https://a.magsrv.com/ad-provider.js></script><link rel=stylesheet href=../../css/rwd.min.489bfaa3b12bf8171f87703d83305a8040102fc8827fc3a712cad73a2b8aa810.css><script>(function(){function n(e){if(t=e.match(/^\[([^\]]+)\]([+-]?):(.+)$/),!t)return null;var t,n,s,o,a=t[1],r=t[2],c=t[3],i=a.match(/^(\d[\d.]*)(?:px)?-(\d[\d.]*)(?:px)?$/);if(i)n=parseFloat(i[1]),s=parseFloat(i[2]);else{if(o=parseFloat(a),isNaN(o))return null;r==="+"?(n=o,s=1/0):(n=0,s=o)}return{min:n,max:s,utility:c}}function e(){var e=window.innerWidth;document.querySelectorAll('[class*="["]').forEach(function(t){t.className.split(/\s+/).forEach(function(s){var o=n(s);if(!o)return;t.classList.toggle(o.utility,e>=o.min&&e<o.max)})})}document.addEventListener("DOMContentLoaded",e);var t;window.addEventListener("resize",function(){clearTimeout(t),t=setTimeout(e,80)})})()</script><link rel=stylesheet href=../../css/basic.min.b8e604cda5f9fcfa24bd6efba28b9099619bf8568ec1972feb0bdcfb62396ea7.css><link rel=stylesheet href=../../framework/tocas/tocas.min.css><script src=../../framework/tocas/tocas.min.js></script><link rel=stylesheet href=../../css/vue.css><script src=../../js/sweetalert2.js></script></head><body><header><noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-54JDX46X" height=0 width=0 style=display:none;visibility:hidden></iframe></noscript></header><main><style>body,html{margin:0;overflow:hidden}main{padding:0!important}#map{position:fixed;inset:0;z-index:0}#preview-panel{position:fixed;bottom:44px;right:12px;z-index:1000;width:min(380px,90vw)}#preview-panel .close-btn{position:absolute;top:6px;right:6px;width:24px;height:24px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:14px;line-height:24px;text-align:center;z-index:1}#preview-img{width:100%;display:block;background:#111;min-height:80px}#status-bar{position:fixed;bottom:0;left:0;right:0;height:36px;background:rgba(0,0,0,.75);color:#ddd;z-index:1001;display:flex;align-items:center;padding:0 12px;gap:8px;font-size:12px;backdrop-filter:blur(4px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}#status-bar .dot{width:8px;height:8px;border-radius:50%;background:#4caf50;flex-shrink:0;transition:background .3s}#status-bar .dot.loading{background:#ff9800;animation:pulse 1s ease-in-out infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}#loading-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}#search-container{position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:1000;width:min(400px,calc(100vw - 24px))}@media(max-width:600px){#search-container{left:12px;transform:none;width:calc(100vw - 58px)}}#search-input{width:100%;height:36px;padding:0 36px 0 12px;border:none;border-radius:6px;background:rgba(255,255,255,.95);box-shadow:0 2px 8px rgba(0,0,0,.3);font-size:13px;outline:none;box-sizing:border-box;color:#333!important}#search-input::placeholder{color:#999!important}#search-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:#888;pointer-events:none;font-size:14px}#search-results{background:#fff;border-radius:0 0 6px 6px;box-shadow:0 4px 12px rgba(0,0,0,.2);overflow:hidden;max-height:240px;overflow-y:auto}.search-item{padding:9px 12px;font-size:13px;cursor:pointer;border-bottom:1px solid #f0f0f0;color:#333;line-height:1.4}.search-item:last-child{border-bottom:none}.search-item:hover{background:#f5f5f5}.search-item .main{font-weight:500}.search-item .sub{font-size:11px;color:#888;margin-top:2px}.search-no-result{padding:10px 12px;font-size:13px;color:#888}.cam-marker-wrapper{background:0 0!important;border:none!important}.cam-dot{width:12px;height:12px;border-radius:50%;background:#2196f3;border:2px solid #fff;animation:cam-glow 2s ease-in-out infinite}@keyframes cam-glow{0%,100%{box-shadow:0 0 4px 2px rgba(33,150,243,.9),0 1px 3px rgba(0,0,0,.4)}50%{box-shadow:0 0 12px 6px rgba(33,150,243,.25),0 1px 3px rgba(0,0,0,.4)}}.leaflet-locate-btn{width:30px!important;height:30px!important;display:flex!important;align-items:center;justify-content:center;cursor:pointer;color:#333;background:#fff;border:none;transition:color .15s}.leaflet-locate-btn:hover{color:#2196f3}.leaflet-locate-btn.is-locating{color:#ff9800;animation:pulse 1s ease-in-out infinite}.leaflet-locate-btn.is-active{color:#2196f3}.expand-btn{position:absolute;top:6px;left:6px;width:24px;height:24px;background:rgba(0,0,0,.5);color:#fff;border:none;border-radius:4px;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;z-index:1;transition:background .15s}.expand-btn:hover{background:rgba(0,0,0,.75)}#fullscreen-overlay{position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9000;display:none;align-items:center;justify-content:center;cursor:zoom-out}#fullscreen-overlay.is-open{display:flex}#fullscreen-img{width:100vw;height:100vh;object-fit:contain;cursor:default}#fullscreen-close{position:fixed;top:16px;right:16px;width:36px;height:36px;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;cursor:pointer;font-size:18px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(4px);transition:background .15s}#fullscreen-close:hover{background:rgba(255,255,255,.3)}#fullscreen-name{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.7);font-size:13px;pointer-events:none;white-space:nowrap}</style><link rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css><link rel=stylesheet href=https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css><link rel=stylesheet href=https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css><div id=map></div><div id=App v-cloak><div id=search-container v-show=!ui.loading><div style=position:relative><input id=search-input type=text placeholder=搜尋地點...（如：台北101、國道3號） v-model=search.keyword @input=search.onInput @keydown.escape="search.open = false" autocomplete=off>
+<span id=search-icon>🔍</span></div><div id=search-results v-show=search.open><div class=search-item v-for="place in search.results" :key=place.placeId @click=search.select(place)><div class=main>{{ place.main }}</div><div class=sub>{{ place.sub }}</div></div><div class=search-no-result v-if=search.noResult>找不到地點</div></div></div><div id=preview-panel v-show=panel.visible><div class=ts-box style=overflow:hidden><button class=close-btn @click=panel.close>✕</button><div style=position:relative;background:#111><img id=preview-img :src=panel.imgSrc alt><div v-show=panel.imgLoading style=position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,.5)><div class=ts-loading style=color:#fff></div></div><button class=expand-btn @click=fullscreen.show title=放大>⛶</button></div><div class="ts-content is-dense is-secondary" style=overflow:hidden><div class=ts-text style=overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:12px>{{ panel.name }}</div></div></div><div v-if=panel.adShown style=background:#fff><ins class=adsbygoogle style=display:block data-ad-client=ca-pub-8417118187182876 data-ad-slot=5369836314 data-ad-format=horizontal data-full-width-responsive=true></ins><component is=script v-cloak>requestAnimationFrame(() => {
+(adsbygoogle = window.adsbygoogle || []).push({ });
+});</component></div></div><div id=fullscreen-overlay :class="{'is-open': fullscreen.open}" @click.self=fullscreen.hide><img id=fullscreen-img :src=fullscreen.src alt>
+<button id=fullscreen-close @click=fullscreen.hide>✕</button><div id=fullscreen-name>{{ fullscreen.name }}</div></div><div id=status-bar><div class=dot :class="{'loading': ui.busy}"></div><span>{{ ui.status }}</span></div><div id=loading-overlay v-show=ui.loading><div class="ts-loading is-large" style=color:#fff></div><div class="ts-text is-large" style=color:#fff>{{ ui.loadingText }}</div></div></div><script src=https://unpkg.com/leaflet@1.9.4/dist/leaflet.js></script><script src=https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js></script><script type=module>
+import { createApp, reactive, onMounted } from '/framework/vue.js';
+import { LocalStorage } from '/js/localStorage.min.14d49f986074eda49e648bda5e9055fa5151abe7b426598f850d14b5540ec878.js';
+import Proxy from '/js/proxy.min.78d439e5f1a95f7b134c94bfc5b5d5b77eb92a9054ecee07dc270c7f1a0c2b57.js';
+
+createApp({ setup() {
+    const APIS      = [
+        'https://thbapp.thb.gov.tw/services/cctv/freeway',
+        'https://thbapp.thb.gov.tw/services/cctv/thb',
+    ];
+    const CACHE_KEY = 'taiwan-cctv-v1';
+    const CACHE_TTL = 60 * 60 * 1000;
+
+    let ui = reactive({
+        loading:     true,
+        loadingText: '正在初始化...',
+        status:      '正在初始化...',
+        busy:        false,
+        setStatus:   (text, busy = false) => { ui.status = text; ui.busy = busy; },
+    });
+
+    let counts = reactive({ total: 0, active: 0 });
+
+    // 圖片輪詢用的內部狀態（不需觸發 re-render）
+    let _cctv = null, _timer = null, _pending = null;
+
+    let panel = reactive({
+        visible:    false,
+        imgSrc:     '',
+        imgLoading: false,
+        name:       '',
+        adShown:    false,
+        stopRefresh: () => {
+            clearTimeout(_timer);
+            if (_pending) { _pending.onload = null; _pending.onerror = null; _pending.src = ''; _pending = null; }
+            _cctv = null;
+        },
+        loadFrame: () => {
+            if (!_cctv) return;
+            const cctv = _cctv;
+            const img  = new Image();
+            _pending   = img;
+            const sep  = cctv.html.includes('?') ? '&' : '?';
+            img.src    = `${cctv.html}${sep}_t=${Date.now()}`;
+            img.onload = () => {
+                if (_pending !== img) return;
+                panel.imgSrc     = img.src;
+                panel.imgLoading = false;
+                if (fullscreen.open) fullscreen.src = img.src;
+                _pending = null;
+                _timer   = setTimeout(panel.loadFrame, 3000);
+            };
+            img.onerror = () => {
+                if (_pending !== img) return;
+                _pending = null;
+                if (_cctv === cctv) _timer = setTimeout(panel.loadFrame, 5000);
+            };
+        },
+        open: (cctv) => {
+            panel.stopRefresh();
+            _cctv            = cctv;
+            panel.imgSrc     = '';
+            panel.imgLoading = true;
+            panel.name       = `${cctv.stakenumber}　${cctv.id}`;
+            panel.visible    = true;
+            panel.adShown    = true;
+            LocalStorage.set('cctv', cctv.id);
+            ui.setStatus(cctv.stakenumber);
+            panel.loadFrame();
+        },
+        close: () => {
+            panel.stopRefresh();
+            panel.imgSrc  = '';
+            panel.visible = false;
+            LocalStorage.set('cctv', '');
+            ui.setStatus(`顯示 ${counts.active} 個 CCTV（共 ${counts.total} 個）`);
+        },
+    });
+
+    let fullscreen = reactive({
+        open: false,
+        src:  '',
+        name: '',
+        show: () => { fullscreen.src = panel.imgSrc; fullscreen.name = panel.name; fullscreen.open = true; },
+        hide: () => { fullscreen.open = false; fullscreen.src = ''; },
+    });
+
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') fullscreen.hide(); });
+
+    let search = reactive({
+        keyword:  LocalStorage.get('keyword') || '',
+        results:  [],
+        open:     false,
+        noResult: false,
+        _timer:   null,
+        onInput: () => {
+            clearTimeout(search._timer);
+            const q = search.keyword.trim();
+            LocalStorage.set('keyword', q);
+            if (!q) { search.open = false; return; }
+            search._timer = setTimeout(() => search.fetch(q), 350);
+        },
+        fetch: async (q) => {
+            try {
+                const url    = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(q)}&format=json&countrycodes=tw&limit=6&accept-language=zh-TW`;
+                const places = await fetch(url).then(r => r.json());
+                search.results  = places.map(p => {
+                    const parts = p.display_name.split(',');
+                    return { placeId: p.place_id, lat: +p.lat, lon: +p.lon, main: parts[0].trim(), sub: parts.slice(1, 3).join(',').trim() };
+                });
+                search.noResult = places.length === 0;
+                search.open     = true;
+            } catch (_) {}
+        },
+        select: (place) => {
+            map.setView([place.lat, place.lon], 14);
+            search.keyword = place.main;
+            search.open    = false;
+        },
+    });
+
+    document.addEventListener('click', e => {
+        const el = document.getElementById('search-container');
+        if (el && !el.contains(e.target)) search.open = false;
+    });
+
+    let map;
+
+    onMounted(async () => {
+        ui.loadingText = '正在初始化地圖...';
+
+        const savedPos   = LocalStorage.load('pos');
+        const initCenter = (savedPos.lat && savedPos.lng) ? [savedPos.lat, savedPos.lng] : [23.97, 120.97];
+        const initZoom   = savedPos.zoom ?? 10;
+
+        map = L.map('map', { zoomControl: false }).setView(initCenter, initZoom);
+        L.control.zoom({ position: 'topright' }).addTo(map);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19, minZoom: 7,
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+        }).addTo(map);
+
+        // 定位控制
+        let locateMarker = null;
+        const LocateControl = L.Control.extend({
+            options: { position: 'topright' },
+            onAdd() {
+                const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control');
+                const btn       = L.DomUtil.create('button', 'leaflet-locate-btn', container);
+                btn.title       = '定位到我的位置';
+                btn.innerHTML   = `<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="22"/><line x1="2" y1="12" x2="7" y2="12"/><line x1="17" y1="12" x2="22" y2="12"/></svg>`;
+                L.DomEvent.on(btn, 'click', () => {
+                    if (!navigator.geolocation) { ui.setStatus('此裝置不支援定位'); return; }
+                    btn.classList.add('is-locating');
+                    ui.setStatus('正在定位...', true);
+                    navigator.geolocation.getCurrentPosition(
+                        ({ coords }) => {
+                            const { latitude: lat, longitude: lng, accuracy } = coords;
+                            map.setView([lat, lng], 16);
+                            if (locateMarker) locateMarker.remove();
+                            locateMarker = L.circle([lat, lng], { radius: accuracy, color: '#2196f3', fillColor: '#2196f3', fillOpacity: 0.12, weight: 2 }).addTo(map);
+                            L.circleMarker([lat, lng], { radius: 7, fillColor: '#2196f3', color: '#fff', weight: 2, fillOpacity: 1 }).addTo(map);
+                            btn.classList.remove('is-locating');
+                            btn.classList.add('is-active');
+                            ui.setStatus('已定位到您的位置');
+                        },
+                        err => { btn.classList.remove('is-locating'); ui.setStatus(`定位失敗：${err.message}`); },
+                        { enableHighAccuracy: true, timeout: 10000 }
+                    );
+                });
+                L.DomEvent.disableClickPropagation(container);
+                return container;
+            },
+        });
+        new LocateControl().addTo(map);
+
+        const clusterGroup  = L.markerClusterGroup({ maxClusterRadius: 50, disableClusteringAtZoom: 15 });
+        map.addLayer(clusterGroup);
+        const activeMarkers = new Map();
+
+        const camIcon = L.divIcon({
+            className: 'cam-marker-wrapper',
+            html:      '<div style="width:24px;height:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;"><div class="cam-dot"></div></div>',
+            iconSize:  [24, 24], iconAnchor: [12, 12],
+        });
+
+        const updateView = (cctvs) => {
+            const bounds     = map.getBounds().pad(0.15);
+            const visible    = cctvs.filter(c => bounds.contains([c.gisy, c.gisx]));
+            const visibleIds = new Set(visible.map(c => c.id));
+            for (const [id, marker] of activeMarkers) {
+                if (!visibleIds.has(id)) { clusterGroup.removeLayer(marker); activeMarkers.delete(id); }
+            }
+            const toAdd = [];
+            for (const cctv of visible) {
+                if (!activeMarkers.has(cctv.id)) {
+                    const marker = L.marker([cctv.gisy, cctv.gisx], { icon: camIcon });
+                    marker.bindTooltip(cctv.stakenumber, { direction: 'top', offset: [0, -6] });
+                    marker.on('click', () => panel.open(cctv));
+                    activeMarkers.set(cctv.id, marker);
+                    toAdd.push(marker);
+                }
+            }
+            if (toAdd.length) clusterGroup.addLayers(toAdd);
+            counts.active = activeMarkers.size;
+            ui.setStatus(`顯示 ${counts.active} 個 CCTV（共 ${counts.total} 個）`);
+        };
+
+        try {
+            // 嘗試從 localStorage cache 取資料
+            let cctvs = null;
+            try {
+                const raw = localStorage.getItem(CACHE_KEY);
+                if (raw) {
+                    const { data, ts } = JSON.parse(raw);
+                    if (Date.now() - ts < CACHE_TTL) cctvs = data;
+                }
+            } catch (_) {}
+
+            if (!cctvs) {
+                ui.loadingText = '正在獲取 CCTV 資料...';
+                ui.setStatus('正在獲取 CCTV 資料...', true);
+                const results = await Promise.all(
+                    APIS.map(url =>
+                        Proxy.fetch(url)
+                            .then(r => r.json())
+                            .catch(err => { console.warn('fetch failed:', url, err); return []; })
+                    )
+                );
+                cctvs = results.flat();
+                try { localStorage.setItem(CACHE_KEY, JSON.stringify({ data: cctvs, ts: Date.now() })); } catch (_) {}
+            }
+
+            counts.total = cctvs.length;
+            ui.loading   = false;
+            ui.setStatus(`已載入 ${counts.total} 個 CCTV`);
+            updateView(cctvs);
+
+            const savedId = LocalStorage.get('cctv');
+            if (savedId) {
+                const found = cctvs.find(c => c.id === savedId);
+                if (found) panel.open(found);
+            }
+
+            let moveTimer;
+            map.on('moveend zoomend', () => {
+                const c = map.getCenter();
+                LocalStorage.set('pos', JSON.stringify({ lat: c.lat, lng: c.lng, zoom: map.getZoom() }));
+                clearTimeout(moveTimer);
+                moveTimer = setTimeout(() => updateView(cctvs), 150);
+            });
+
+        } catch (err) {
+            ui.loadingText = `載入失敗：${err.message}`;
+            ui.setStatus('載入失敗');
+            console.error(err);
+        }
+    });
+
+    return { ui, panel, fullscreen, search };
+}}).mount('#App');
+</script></main><footer><script></script></footer></body></html>
