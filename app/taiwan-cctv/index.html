@@ -5,7 +5,7 @@
 <button id=fullscreen-close @click=fullscreen.hide>✕</button><div id=fullscreen-name>{{ fullscreen.name }}</div></div><div id=status-bar><div class=dot :class="{'loading': ui.busy}"></div><span>{{ ui.status }}</span></div><div id=loading-overlay v-show=ui.loading><div class="ts-loading is-large" style=color:#fff></div><div class="ts-text is-large" style=color:#fff>{{ ui.loadingText }}</div></div></div><script src=https://unpkg.com/leaflet@1.9.4/dist/leaflet.js></script><script src=https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js></script><script type=module>
 import { createApp, reactive, onMounted } from '/framework/vue.js';
 import { LocalStorage } from '/js/localStorage.min.14d49f986074eda49e648bda5e9055fa5151abe7b426598f850d14b5540ec878.js';
-import Proxy from '/js/proxy.min.78d439e5f1a95f7b134c94bfc5b5d5b77eb92a9054ecee07dc270c7f1a0c2b57.js';
+import Proxy from '/js/proxy.min.a94ea960843e8df998c1383e0ff7b08012dce8b4cd4ae4f35a1baefb0cb3f032.js';
 
 createApp({ setup() {
     const APIS      = [
